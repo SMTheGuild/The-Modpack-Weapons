@@ -1,0 +1,14 @@
+{
+	"customProjectile": {
+		"script": "customProjectile.bin",
+		"class": "customProjectile"
+	},
+	"portedFire": {
+		"script": "portedFire.bin",
+		"class": "portedFire"
+	},
+	"stickyBomb": {
+		"script": "stickyBombs.bin",
+		"class": "stickyBomb"
+	}
+}

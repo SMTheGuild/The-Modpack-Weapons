@@ -1,0 +1,58 @@
+{
+	"7a523237-1554-4b45-8b61-b2569c503259":
+	{
+		"title": "Small Cannon",
+		"description": "\"Orange Launcher\"\nCurrently works as a small cannon\n\nModel and explosion will be updated"
+	},
+	"a0a28efd-dcf9-4dfd-9557-78db9fce2576":
+	{
+		"title": "Big Cannon",
+		"description": "\"Melon Launcher\"Currently works as a big cannon\n\nModel and explosion will be updated"
+	},
+	"0d45bf5c-4090-4f0c-b977-ec6d7fffa125":
+	{
+		"title": "Cucumber CrossBow",
+		"description": "A weapon with more piercing power than a spud gun. Only destroys weak materials"
+	},
+	"afed8e20-450f-451b-8910-c9a867112b50":
+	{
+		"title": "PopCorn-on-the-Cob Launcher",
+		"description": "A grenade launcher repurposed to use Corn Cobs as ammunition"
+	},
+	"3e874085-3444-4e37-8a7f-d5af52bbca8e":
+	{
+		"title": "Large Flame Thrower",
+		"description": "Throw fire, farther\n\n\n#ffff00!WARNING!\n#ffffffFire physics is new and highly experimental! Too much fire may cause performance problems! (try turning off Dynamic Lights for better performance with fire)"
+	},
+	"afa66ea2-8541-44dd-8595-63427ea95d6a":
+	{
+		"title": "Small Flame Thrower",
+		"description": "\"Not A Flame Thrower\"\n\n\n#ffff00!WARNING!\n#ffffffFire physics is new and highly experimental! Too much fire may cause performance problems! (try turning off Dynamic Lights for better performance with fire)"
+	},
+
+	"b45b8362-041d-4216-9eb4-e4c1208e30a4":
+	{
+		"title": "Rocket Launcher",
+		"description": "Similar to other video game rocket launchers (slow flying speed for gameplay)\n\nStill a work in progress, as is everything in MP BETA."
+	},
+	"180135ca-6eb8-4a5d-bc34-94917fb82386":
+	{
+		"title": "Sticky Bomb Launcher",
+		"description": "This grenade launcher fires bombs that stick to whatever surface they contact.\n\nNumber Inputs:\nWhite: Ammunition\nBlack: Timer (seconds)\n\nLogic Inputs:\nAny Color: Shoot\nBlack: Manual Detonation\n\nDefault Values:\n5 Bombs / 10 seconds"
+	},
+	"d71aa6e8-5dd5-4a51-8090-a904273b4f66":
+	{
+		"title": "Halloween Skull Launcher",
+		"description": "Spooky Scary Skull homing missles!\n\nPriority targetting in front\n\nWill avoid terrain, but destroy creations"
+	},
+	"82e504c3-4317-4953-8c70-e594f7397b23":
+	{
+		"title": "Campfire",
+		"description": "Step on this for a warm and fuzzy feeling inside.\n\nPress E to activate\nConnect logic to activate\nShoot spud to activate\n\n\n#ffff00!WARNING!\n#ffffffFire physics is new and highly experimental! Too much fire may cause performance problems! (try turning off Dynamic Lights for better performance with fire)"
+	},
+	"13404ca3-4a15-47c8-8650-5b0b68d1d79a":
+	{
+		"title": "Lavaball",
+		"description": "Awww haw haw! Dats hot! Daz hot!"
+	}
+}

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Resource" version="1.1">
+    <Resource type="ResourceImageSet" name="ItemIconsSet0">
+        <Group name="ItemIcons" texture="IconMap.png" size="74 74">
+            <Index name="Empty">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="0d45bf5c-4090-4f0c-b977-ec6d7fffa125">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="afed8e20-450f-451b-8910-c9a867112b50">
+                <Frame point="74 0"/>
+            </Index>
+            <Index name="b45b8362-041d-4216-9eb4-e4c1208e30a4">
+                <Frame point="148 0"/>
+            </Index>
+            <Index name="180135ca-6eb8-4a5d-bc34-94917fb82386">
+                <Frame point="222 0"/>
+            </Index>
+            <Index name="d71aa6e8-5dd5-4a51-8090-a904273b4f66">
+                <Frame point="296 0"/>
+            </Index>
+            <Index name="7a523237-1554-4b45-8b61-b2569c503259">
+                <Frame point="370 0"/>
+            </Index>
+            <Index name="a0a28efd-dcf9-4dfd-9557-78db9fce2576">
+                <Frame point="0 74"/>
+            </Index>
+            <Index name="3e874085-3444-4e37-8a7f-d5af52bbca8e">
+                <Frame point="74 74"/>
+            </Index>
+            <Index name="afa66ea2-8541-44dd-8595-63427ea95d6a">
+                <Frame point="148 74"/>
+            </Index>
+            <Index name="82e504c3-4317-4953-8c70-e594f7397b23">
+                <Frame point="222 74"/>
+            </Index>
+            <Index name="13404ca3-4a15-47c8-8650-5b0b68d1d79a">
+                <Frame point="296 74"/>
+            </Index>
+        </Group>
+    </Resource>
+</MyGUI>

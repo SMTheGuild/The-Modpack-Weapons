@@ -1,0 +1,473 @@
+{
+   "partList" : [
+		{
+			"uuid": "0d45bf5c-4090-4f0c-b977-ec6d7fffa125",
+			"renderable": {
+				"lodList": [ 
+					 {
+						"subMeshList": [
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/env_foliage_cucumberplant_dif.tga",
+									"$MOD_DATA/Objects/Textures/env_foliage_cucumberplant_asg.tga",
+									"$MOD_DATA/Objects/Textures/env_foliage_cucumberplant_nor.tga"
+								],
+								"material": "PoseAnimDifAsgNor"
+							},
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/UniTex2_dif.png",
+									"$MOD_DATA/Objects/Textures/UniTex_asg.png",
+									"$GAME_DATA/Textures/nonor_nor.png"
+								],
+								"material": "PoseAnimDifAsgNor"
+							}
+						],
+						"mesh": "$MOD_DATA/Objects/Mesh/CucumberCrossbow.obj",
+						"pose0": "$MOD_DATA/Objects/Mesh/CucumberCrossbow_on.obj"
+					}
+				]
+			},
+			"scripted" : { "filename": "$MOD_DATA/Scripts/crossbow.lua", "classname": "cucumbercrosssbow" },
+			"color": "df7f00",
+			"box": { "x": 1, "y": 1, "z": 4 },
+			"density": 1250.0,
+			"physicsMaterial": "Metal",
+			"sticky": "-Z+Z-Y+Y-X+X",			
+			"rotationSet": "PropY"
+		},
+		{
+			"uuid": "afed8e20-450f-451b-8910-c9a867112b50",
+			"renderable": {
+				"lodList": [ 
+					 {
+						"subMeshList": [
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/UniTex2_dif.png",
+									"$MOD_DATA/Objects/Textures/UniTex_asg.png",
+									"$GAME_DATA/Textures/nonor_nor.png"
+								],
+								"material": "PoseAnimDifAsgNor"
+							}
+						],
+						"mesh": "$MOD_DATA/Objects/Mesh/Launcher.obj",
+						"pose0": "$MOD_DATA/Objects/Mesh/Launcher_on.obj"
+					}
+				]
+			},
+			"scripted" : { "filename": "$MOD_DATA/Scripts/grenadelauncher.lua", "classname": "grenadelauncher" },
+			"color": "df7f00",
+			"box": { "x": 1, "y": 2, "z": 4 },
+			"density": 1250.0,
+			"physicsMaterial": "Metal",
+			"sticky": "-Z+Z-Y+Y-X+X",			
+			"rotationSet": "PropY"
+		},
+		{
+			"uuid": "180135ca-6eb8-4a5d-bc34-94917fb82386",
+			"renderable": {
+				"lodList": [ 
+					 {
+						"subMeshList": [
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/UniTex2_dif.png",
+									"$MOD_DATA/Objects/Textures/UniTex_asg.png"
+								],
+								"material": "DifAsg"
+							}
+						],
+						"mesh": "$MOD_DATA/Objects/Mesh/MissileLauncher.obj"
+					}
+				]
+			},
+			"scripted" : { "filename": "$MOD_DATA/Scripts/stickyGrenade.lua", "classname": "stickyGrenade" },
+			"color": "222222",
+//			"cylinder": { "diameter": 2, "depth": 8, "margin": 0.1, "axis": "Z" },
+			"box": { "x": 3, "y": 1, "z": 1 },
+			"density": 1250.0,
+			"physicsMaterial": "Metal",
+			"sticky": "-Z+Z-Y+Y-X+X",			
+			"rotationSet": "PropYX",
+			"qualityLevel": 4
+		},
+		{
+			"uuid": "b45b8362-041d-4216-9eb4-e4c1208e30a4",
+			"renderable": {
+				"lodList": [ 
+					 {
+						"subMeshList": [
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/UniTex2_dif.png",
+									"$MOD_DATA/Objects/Textures/UniTex_asg.png"
+								],
+								"material": "DifAsg"
+							}
+						],
+						"mesh": "$MOD_DATA/Objects/Mesh/MissileLauncher.obj"
+					}
+				]
+			},
+			"scripted" : { "filename": "$MOD_DATA/Scripts/rocketlauncher.lua", "classname": "rocketlauncher" },
+			"color": "df7f00",
+//			"cylinder": { "diameter": 2, "depth": 8, "margin": 0.1, "axis": "Z" },
+			"box": { "x": 3, "y": 1, "z": 1 },
+			"density": 1250.0,
+			"physicsMaterial": "Metal",
+			"sticky": "-Z+Z-Y+Y-X+X",			
+			"rotationSet": "PropYX",
+			"qualityLevel": 4
+		},
+		{
+			"uuid": "d71aa6e8-5dd5-4a51-8090-a904273b4f66",
+			"renderable": {
+				"lodList": [
+					{
+						"subMeshList": [
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/skull_emitter_dif.png",
+									"$MOD_DATA/Objects/Textures/skull_emitter_asg.png",
+									"$GAME_DATA/Textures/nonor_nor.png"
+								],
+								"material": "DifAsgNorAlphaFlip"
+							},
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/skull_emitter_dif.png",
+									"$MOD_DATA/Objects/Textures/skull_emitter_asg.png",
+									"$GAME_DATA/Textures/nonor_nor.png"
+								],
+								"material": "DifAsgNor"
+							}
+						],
+						"mesh": "$MOD_DATA/Objects/Mesh/skull_emitter.obj"
+					}
+				]
+			},
+			"scripted" : { "filename": "$MOD_DATA/Scripts/skull.lua", "classname": "skull" },
+			"rotationSet": "PropSkullEmitter",
+			"density": 250,
+			"color": "df7f00",
+			"hull": { "x": 3, "y": 3, "z": 3, "margin": 1.5, "pointList": [ { "x": 0, "y": 0, "z": 0 } ] },
+			"physicsMaterial": "Metal",
+			"sticky": "-X+Y-Y+Z-Z",
+			"qualityLevel": 2,
+			"friction": 0
+		},
+		{
+			"uuid": "7a523237-1554-4b45-8b61-b2569c503259",
+			"renderable": {
+				"lodList": [ 
+					 {
+						"subMeshList": [
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/UniTex2_dif.png",
+									"$MOD_DATA/Objects/Textures/UniTex_asg.png"
+								],
+								"material": "DifAsg"
+							}
+						],
+						"mesh": "$MOD_DATA/Objects/Mesh/Cannon.obj"
+					}
+				]
+			},
+			"scripted" : { "filename": "$MOD_DATA/Scripts/cannon.lua", "classname": "cannon" },
+			"color": "df7f00",
+			"cylinder": { "diameter": 1, "depth": 4, "margin": 0.1, "axis": "Z" },
+			"density": 1250.0,
+			"physicsMaterial": "Metal",
+			"sticky": "-Z+Z-Y+Y-X+X",			
+			"rotationSet": "PropYX"
+		},
+		{
+			"uuid": "a0a28efd-dcf9-4dfd-9557-78db9fce2576",
+			"renderable": {
+				"lodList": [ 
+					 {
+						"subMeshList": [
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/UniTex2_dif.png",
+									"$MOD_DATA/Objects/Textures/UniTex_asg.png"
+								],
+								"material": "DifAsg"
+							}
+						],
+						"mesh": "$MOD_DATA/Objects/Mesh/BigCannon.obj"
+					}
+				]
+			},
+			"scripted" : { "filename": "$MOD_DATA/Scripts/bigcannon.lua", "classname": "bigcannon" },
+			"color": "df7f00",
+//			"cylinder": { "diameter": 2, "depth": 8, "margin": 0.1, "axis": "Z" },
+			"box": { "x": 3, "y": 2, "z": 8 },
+			"density": 1250.0,
+			"physicsMaterial": "Metal",
+			"sticky": "-Z+Z-Y+Y-X+X",			
+			"rotationSet": "PropYX"
+		},
+		{
+			"uuid": "3e874085-3444-4e37-8a7f-d5af52bbca8e",
+			"renderable": {
+				"lodList": [
+					{
+						"subMeshList": [
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/UniTex_dif.png",
+									"$MOD_DATA/Objects/Textures/UniTex_asg.png",
+									"$GAME_DATA/Textures/nonor_nor.png"
+								],
+								"material": "PoseAnimDifAsgNor"
+							},
+							{
+								"textureList": [ 
+									"$MOD_DATA/Objects/Textures/obj_light_blueheadlightflare_dif.png", 
+									"", 
+									"" 
+								],
+								"material": "PoseAnimLightFlare"
+							}
+						],
+						"mesh": "$MOD_DATA/Objects/Mesh/FlameThrowerBig.obj",
+						"pose0": "$MOD_DATA/Objects/Mesh/FlameThrowerBig_on.obj"
+					}
+				]
+			},
+			"scripted" : { "filename": "$MOD_DATA/Scripts/flamethrower.lua", "classname": "flamethrower" },
+			"rotationSet": "PropY",
+			"density": 250,
+			"color": "df7f00",
+			"box": { "x": 5, "y": 2, "z": 2 },
+			"physicsMaterial": "Metal",
+			"sticky": "-X+X-Y+Y-Z+Z",
+			"qualityLevel": 4
+		},
+		{
+			"uuid": "afa66ea2-8541-44dd-8595-63427ea95d6a",
+			"renderable": {
+				"lodList": [
+					{
+						"subMeshList": [
+							{
+								"textureList": [ 
+									"$MOD_DATA/Objects/Textures/obj_light_blueheadlightflare_dif.png", 
+									"", 
+									"" 
+								],
+								"material": "PoseAnimLightFlare"
+							},
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/UniTex2_dif.png",
+									"$MOD_DATA/Objects/Textures/UniTex_asg.png",
+									"$GAME_DATA/Textures/nonor_nor.png"
+								],
+								"material": "PoseAnimDifAsgNor"
+							}
+						],
+						"mesh": "$MOD_DATA/Objects/Mesh/FlameThrower.obj",
+						"pose0": "$MOD_DATA/Objects/Mesh/FlameThrower_on.obj"
+					}
+				]
+			},
+			"scripted" : { "filename": "$MOD_DATA/Scripts/flamethrower.lua", "classname": "biglighter" },
+			"rotationSet": "PropY",
+			"density": 250,
+			"color": "df7f00",
+			"box": { "x": 3, "y": 1, "z": 1 },
+			"physicsMaterial": "Metal",
+			"sticky": "-X+X-Y+Y-Z+Z",
+			"qualityLevel": 4
+		},
+		{
+			"uuid": "82e504c3-4317-4953-8c70-e594f7397b23",
+			"renderable": {
+				"lodList": [
+					{
+						"subMeshList": [
+							{
+								"textureList": [ // top log
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_pine_dif2.png",
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_pine_asg.png",
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_pine_nor.png"
+								],
+								"material": "DifAsgNor"
+							},
+							{
+								"textureList": [ // top log small
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_pine_dif2.png",
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_pine_asg.png",
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_pine_nor.png"
+								],
+								"material": "DifAsgNor"
+							},
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_giantpine_dif2.png",
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_giantpine_asg.png",
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_giantpine_nor.png"
+								],
+								"material": "DifAsgNor"
+							},
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_pine_dif2.png",
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_pine_asg.png",
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_pine_nor.png"
+								],
+								"material": "DifAsgNor"
+							},
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_pine_dif2.png",
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_pine_asg.png",
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_pine_nor.png"
+								],
+								"material": "DifAsgNor"
+							},
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_pine_dif2.png",
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_pine_asg.png",
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_pine_nor.png"
+								],
+								"material": "DifAsgNor"
+							},
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_pine_dif2.png",
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_pine_asg.png",
+									"$MOD_DATA/Objects/Textures/Forest/env_forest_pine_nor.png"
+								],
+								"material": "DifAsgNor"
+							},///////////////////////////////
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/campfire_rocks_dif.png",
+									"$MOD_DATA/Objects/Textures/Rocks/env_rocks_rock01_asg.png",
+									"$MOD_DATA/Objects/Textures/Rocks/env_rocks_rock08_nor.png"
+								],
+								"material": "DifAsgNor"
+							},
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/campfire_rocks_dif.png",
+									"$MOD_DATA/Objects/Textures/Rocks/env_rocks_rock01_asg.png",
+									"$MOD_DATA/Objects/Textures/Rocks/env_rocks_rock07_nor.png"
+								],
+								"material": "DifAsgNor"
+							},
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/campfire_rocks_dif.png",
+									"$MOD_DATA/Objects/Textures/Rocks/env_rocks_rock01_asg.png",
+									"$MOD_DATA/Objects/Textures/Rocks/env_rocks_rock06_nor.png"
+								],
+								"material": "DifAsgNor"
+							},
+							{ // rock 5
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/campfire_rocks_dif.png",
+									"$MOD_DATA/Objects/Textures/Rocks/env_rocks_rock01_asg.png",
+									"$MOD_DATA/Objects/Textures/Rocks/env_rocks_rock05_nor.png"
+								],
+								"material": "DifAsgNor"
+							},
+							{ // rock 4 
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/campfire_rocks_dif.png",
+									"$MOD_DATA/Objects/Textures/Rocks/env_rocks_rock01_asg.png",
+									"$MOD_DATA/Objects/Textures/Rocks/env_rocks_rock04_nor.png"
+								],
+								"material": "DifAsgNor"
+							},
+							{ // rock 2 second last (floor)
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/campfire_rocks_dif.png",
+									"$MOD_DATA/Objects/Textures/Rocks/env_rocks_bigrock01_asg.png",
+									"$MOD_DATA/Objects/Textures/Rocks/env_rocks_rock02_nor.png"
+								],
+								"material": "DifAsgNor"
+							},
+							{ // rock 1 last item
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/campfire_rocks_dif.png",
+									"$MOD_DATA/Objects/Textures/Rocks/env_rocks_bigrock01_asg.png",
+									"$MOD_DATA/Objects/Textures/Rocks/env_rocks_rock01_nor.png"
+								],
+								"material": "DifAsgNor"
+							}
+						],
+						"mesh": "$MOD_DATA/Objects/Mesh/campfire.obj"
+					}
+				]
+			},
+			"scripted" : { "filename": "$MOD_DATA/Scripts/campfire.lua", "classname": "campfire" },
+			"rotationSet": "PropY",
+			"density": 1250,
+			"color": "804620", // rocks 6e7569	  // trunks 804620
+			"hull": { "x": 5, "y": 2, "z": 5, //"margin": 0.3,
+				"pointList": [
+					{ "x": -0.60964131, "y": 0.90484942, "z": 0.29480497 },
+					{ "x": 0.52895674, "y": 0.21388348, "z": 0.41131370 },
+					{ "x": 0.55829912, "y": -0.29503290, "z": 0.84779768 },
+					{ "x": -0.031043257, "y": 0.27835429, "z": 0.78808645 },
+					{ "x": -0.80432474, "y": -0.22164571, "z": 0.83748840 },
+					{ "x": -0.95492279, "y": -0.021645710, "z": 0.024206917 },
+					{ "x": -0.64432474, "y": 0.27835429, "z": -0.70907457 },
+					{ "x": 0.20895674, "y": 0.17835429, "z": -0.80367262 },
+					{ "x": 0.63261093, "y": -0.45535413, "z": -0.62341714 },
+					{ "x": 0.88895674, "y": -1.00000000, "z": 0.18420692 },
+					{ "x": 0.67606352, "y": -1.00000000, "z": 0.73131370 },
+					{ "x": 0.24895674, "y": -1.00000000, "z": 0.94420692 },
+					{ "x": -0.73815004, "y": -1.00000000, "z": 0.89131370 },
+					{ "x": -1.27104326, "y": -1.00000000, "z": 0.024206917 },
+					{ "x": -0.73815004, "y": -0.60000000, "z": -0.76289986 },
+					{ "x": -0.27104326, "y": -1.00000000, "z": -0.93579308 },
+					{ "x": 0.15606352, "y": -1.00000000, "z": -0.96289986 },
+					{ "x": -0.35104326, "y": 1.01000000, "z": 0.024206917 },
+					{ "x": 0.56251013, "y": -1.00000000, "z": -0.62934647 },
+					{ "x": 0.91753725, "y": -0.22164571, "z": 0.23084766 }
+				]
+			},
+			"physicsMaterial": "Rock",
+			"sticky": "-Y",
+			"prop": true, // only upright / on ground? I forget what this does, but this prevents it from being placed on blocks and vehicles (intended)
+			"qualityLevel": 5
+		},
+		{
+			"uuid": "13404ca3-4a15-47c8-8650-5b0b68d1d79a", // lavaball
+			"renderable": {
+				"lodList": [
+					{
+						"subMeshList": [
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/lavaball_dif.png",
+									"$MOD_DATA/Objects/Textures/lavaball_asg.png",
+									"$MOD_DATA/Objects/Textures/lavaball_norA.png"
+								],
+								"material": "DifAsgNor"
+							}
+						],
+						"mesh": "$MOD_DATA/Objects/Mesh/lavaball.obj"
+					}
+				]
+			},
+			"rotationSet": "PropFull",
+			"color": "df7f00",
+			"sphere": { "diameter": 3 },
+			"density": 500,
+			"scripted" : { "filename": "$MOD_DATA/Scripts/lavaball.lua", "classname": "lavaball" },
+			"physicsMaterial": "Rock",
+			"qualityLevel": 4,
+			"friction": -1, // high friction -1 ? low friction 0? 
+			"restitution": 1.5 // bounce around and settle
+		}
+   ]
+}
