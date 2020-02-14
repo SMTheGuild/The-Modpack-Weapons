@@ -31,8 +31,11 @@ function rocketlauncher.server_onRefresh( self )
 	self:server_onCreate()
 end
 
-function rocketlauncher.server_onCreate( self ) 
+function rocketlauncher.client_onCreate(self)
 	self:client_attachScript("customProjectile")
+end
+
+function rocketlauncher.server_onCreate( self ) 
 	self.projectileConfiguration = {
 		localPosition = true,			-- when true, position is relative to shape position and rotation
 	    localVelocity = true,			-- when true, position is relative to shape position and rotation

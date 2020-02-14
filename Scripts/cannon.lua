@@ -29,8 +29,12 @@ function cannon.server_onRefresh( self )
 	sm.isDev = true
 	self:server_onCreate()
 end
-function cannon.server_onCreate( self ) 
+
+function cannon.client_onCreate(self)
 	self:client_attachScript("customProjectile")
+end
+
+function cannon.server_onCreate( self ) 
 	self.projectileConfiguration = {
 		localPosition = true,			-- when true, position is relative to shape position and rotation
 	    localVelocity = true,			-- when true, position is relative to shape position and rotation

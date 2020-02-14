@@ -30,8 +30,11 @@ function bigcannon.server_onRefresh( self )
 	self:server_onCreate()
 end
 
-function bigcannon.server_onCreate( self )
+function bigcannon.client_onCreate(self)
 	self:client_attachScript("customProjectile")
+end
+
+function bigcannon.server_onCreate( self )
 	self.projectileConfiguration = {
 		localPosition = true,			-- when true, position is relative to shape position and rotation
 	    localVelocity = true,			-- when true, position is relative to shape position and rotation
