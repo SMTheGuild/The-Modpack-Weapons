@@ -468,6 +468,46 @@
 			"qualityLevel": 4,
 			"friction": -1, // high friction -1 ? low friction 0? 
 			"restitution": 1.5 // bounce around and settle
+		},
+		{
+			"uuid": "e31b12ea-4341-4900-b43a-649da0f97f32",
+			"renderable": {
+				"lodList": [
+					{
+						"subMeshList": [
+							{
+								"textureList": [ 
+									"$GAME_DATA/Textures/transparent.tga", 
+									"", 
+									"" 
+								],
+								"material": "PoseAnimLightFlare"
+							},
+							{
+								"textureList": [
+									"$MOD_DATA/Objects/Textures/UniTex2_dif.png",
+									"$MOD_DATA/Objects/Textures/UniTex_asg.png",
+									"$GAME_DATA/Textures/nonor_nor.png"
+								],
+								"material": "PoseAnimDifAsgNor"
+							}
+						],
+						"mesh": "$MOD_DATA/Objects/Mesh/FlameThrower.obj",
+						"pose0": "$MOD_DATA/Objects/Mesh/FlameThrower_on.obj"
+					}
+				]
+			},
+			"scripted" : { 
+				"filename": "$MOD_DATA/Scripts/watergun.lua",
+				"classname": "watergun"
+			},
+			"rotationSet": "PropY",
+			"density": 250,
+			"color": "0046df",
+			"box": { "x": 3, "y": 1, "z": 1 },
+			"physicsMaterial": "Metal",
+			"sticky": "-X+X-Y+Y-Z+Z",
+			"qualityLevel": 4
 		}
    ]
 }
