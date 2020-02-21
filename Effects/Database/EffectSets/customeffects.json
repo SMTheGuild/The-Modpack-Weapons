@@ -684,7 +684,59 @@
 			}
 		]
 	},
-
+	"water": //water that comes out the watergun
+	{
+		"maxInstances": 420,
+		"parameterList":
+		{
+			"color": "7777df",
+			"RemainingInstances": 420,
+			"ground_distance": 0.0,
+			"power": 10.0
+		},
+		"effectList":
+		[
+			{
+				"type": "particle",
+				"name": "watershot",
+				"offset": { "x": 0.0, "y": 0.0, "z": 0.0 },
+				"delay": 0.0
+			},
+			{
+				"type": "audio",
+				"name": "Thruster dust",
+				"parameters":[
+					"ground_distance",
+					"power"
+				],
+				"delay": 0.0
+            }
+		]
+	},
+	"Extinguished_fire":
+	{
+		"parameterList":{
+			"color": "CDCDFF",
+			"Size":1.0,
+			"Velocity":10.0,
+			"Material":14.0
+		},
+		"effectList":[
+			{
+				"type": "particle",
+				"name": "steam",
+				"offset": { "x": 0.0, "y": 0.0, "z": 0.0 },
+				"parameters":["color"],
+				"delay": 0.0
+			},
+			{
+				"type": "audio",
+				"name": "Collision - Single",
+				"parameters":["Size","Velocity","Material"],
+				"delay": 0.0
+            }
+        ]
+    },
 
 
 	"fireskull":

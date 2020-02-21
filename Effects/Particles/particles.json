@@ -4,6 +4,7 @@
 		"popcorn.json",
 		"fire.json",
 		"flameshot.json",
+		"watershot.json",
 		"skullshot.json",
 		"melonshot.json",
 		"orangeshot.json",
@@ -12,6 +13,7 @@
 		"stickybomb.json",
 		"lavaEmbers.json",
 		"lavaEmbersBig.json",
-		"rocket.json"
+		"rocket.json",
+		"steam.json"
 	]
 }
