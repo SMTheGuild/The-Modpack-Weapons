@@ -24,7 +24,7 @@ lavaball.poseWeightCount = 1
 
 
 function lavaball.client_onCreate(self)
-	self:client_attachScript("portedFire")
+	self:client_attachScript("customFire")
 	self.shooteffect = sm.effect.createEffect("flameslight", self.interactable)
 	self.shooteffect:setOffsetRotation( sm.vec3.getRotation(sm.vec3.new( 0, 1, 0 ),sm.vec3.new( 0, 0, 1 )))
 	self.shooteffect:start()
@@ -44,18 +44,22 @@ function lavaball.server_onCollision(self, othershape, collidePosition, velocity
 	
 	if math.random2(5) <= 2 then -- "% of doing a fire = 2/5"
 		local result = {valid = true} -- create a fake raycastresult for the fire lib.
-		result.type = "terrain"
+		result.type = "terrainSurface"
 		result.pointWorld = collidePosition
+		result.normalWorld = normal
 		if othershape then
 			result.type = "body"
 			result.getShape = function() return othershape end
+			result.getBody = function() return othershape.body end
+			result.normalLocal = normal
 		end
-		
-		portedFire.server_spawnFire(
-			collidePosition,
-			velocity,
-			result
-		)
+
+		customFire.server_spawnFire(self, {
+			position = collidePosition,
+			velocity = velocity,
+			raycast = result,
+			priority = true
+		})
 	end
 end
 

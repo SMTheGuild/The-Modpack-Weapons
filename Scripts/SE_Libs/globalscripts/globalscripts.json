@@ -3,9 +3,9 @@
 		"script": "customProjectile.bin",
 		"class": "customProjectile"
 	},
-	"portedFire": {
-		"script": "portedFire.bin",
-		"class": "portedFire"
+	"customFire": {
+		"script": "customFire.bin",
+		"class": "customFire"
 	},
 	"stickyBomb": {
 		"script": "stickyBombs.bin",

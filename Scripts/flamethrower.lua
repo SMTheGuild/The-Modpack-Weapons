@@ -66,11 +66,12 @@ function flamethrower.server_tryFire( self, dt )
 			-- fire (sync send, async behaviour)
 			local hit, result =  sm.physics.raycast( self.shape.worldPosition, self.shape.worldPosition - self.shape.right*1.5 )
 			
-			portedFire.server_spawnFire(
-				self.shape.worldPosition - self.shape.right*1.3 + self.shape.at*0.1 + self.shape.velocity * dt * 2, -- delay correction
-				dir,
-				result
-			)
+			customFire.server_spawnFire(self, {
+				position = self.shape.worldPosition - self.shape.right*1.3 + self.shape.at*0.1 + self.shape.velocity * dt * 2,
+				velocity = dir,
+				raycast = result,
+				oil = true
+			})
 		end
 	end
 end
@@ -78,7 +79,7 @@ end
 -- Client
 
 function flamethrower.client_onCreate( self )
-	self:client_attachScript("portedFire")
+	self:client_attachScript("customFire")
 	self.boltValue = 0.0
 	self.shooteffect = sm.effect.createEffect("flame", self.interactable)
 	self.shooteffect:setOffsetRotation(  sm.vec3.getRotation(sm.vec3.new( 1, 0, 0 ),sm.vec3.new( 0, 0, 1 )))
@@ -176,11 +177,12 @@ function biglighter.server_tryFire( self )
 			local dir = sm.noise.gunSpread(-self.shape.right, 30 )*3
 			local hit, result =  sm.physics.raycast( self.shape.worldPosition, self.shape.worldPosition + dir )
 			if hit then
-				portedFire.server_spawnFire(
-					self.shape.worldPosition - self.shape.right/4, 
-					dir,
-					result
-				)
+				customFire.server_spawnFire(self, {
+					position = self.shape.worldPosition - self.shape.right/4,
+					velocity = dir,
+					raycast = result,
+					oil = true
+				})
 			end
 		end
 	end
@@ -189,7 +191,7 @@ end
 -- Client
 
 function biglighter.client_onCreate( self )
-	self:client_attachScript("portedFire")
+	self:client_attachScript("customFire")
 	self.boltValue = 0.0
 	self.shooteffect = sm.effect.createEffect("flame", self.interactable)
 	self.shooteffect:setOffsetRotation(  sm.vec3.getRotation(sm.vec3.new( 1, 0, 0 ),sm.vec3.new( 0, 0, 1 )))
