@@ -1,12 +1,6 @@
-local version = 1.1
-
 --[[
 	Copyright (c) 2019 Scrap Essentials Team
 ]]--
-
-
-if version <= (sm.__SE_Version.Debugger or 0) then return end
-sm.__SE_Version.Debugger = version
 
 
 local classO = class
@@ -20,7 +14,7 @@ function class(...) -- multi-class inheritance, by Brent Batch
 	return classO(klass)
 end
 
-function sm.checkDev(shape)   -- a '-dev' check by Brent Batch
+sm.checkDev = sm.checkDev or function(shape)   -- a '-dev' check by Brent Batch
 	if sm.isDev ~= nil then return sm.isDev end
 	if lastLoaded == 1 then -- on world init dev check
 		sm.isDev = true
@@ -38,10 +32,10 @@ function se.isModder()  -- an 'is a known modder' check by Brent Batch
 		local modders = {["Brent Batch"] = true, ["TechnologicNick"] = true, ["MJM"] = true, ["Mini"] = true, ["YT_BlueFlame"] = true} 
 		local name = sm.player.getAllPlayers()[1].name 
 		if modders[name] then 
-			function sm.isModder() return true end 
+			function se.isModder() return true end 
 			return true 
 		else 
-			function sm.isModder() return false end 
+			function se.isModder() return false end 
 			return false 
 		end
 	end
