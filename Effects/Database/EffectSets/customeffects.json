@@ -275,10 +275,7 @@
 		{
 			"color": "ffcc34",
 			"intensity": 0.6,
-			"Size": 0.0,
-			"Velocity": 5.0,
 			"radius": 6,
-			"Material": 0.0,
 			"RemainingInstances": 1000
 		},
 		"parameterCurves":
@@ -737,6 +734,41 @@
             }
         ]
     },
+	"fire_rolling_sound":
+	{
+		"parameterList":{
+			"color": "CDCDFF",
+			"Size": 1.0,
+			"Velocity": 10.0,
+			"Material": 0.0
+		},
+		"effectList":[
+			{
+				"type": "audio",
+				"name": "Collision - Rolling",
+				"parameters":["Size","Velocity","Material"],
+				"delay": 0.0
+            }
+        ]
+    },
+	"fire_collision_sound":
+	{
+		"parameterList":{
+			"color": "CDCDFF",
+			"Size": 1.0,
+			"Velocity": 10.0,
+			"Material": 0.0
+		},
+		"effectList":[
+			{
+				"type": "audio",
+				"name": "Collision - Multiple",
+				"parameters":["Size","Velocity","Material"],
+				"delay": 0.0
+            }
+        ]
+    },
+	
 
 
 	"fireskull":
