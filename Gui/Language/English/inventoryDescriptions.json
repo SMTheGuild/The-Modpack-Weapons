@@ -59,5 +59,10 @@
 	{
 		"title": "Water Gun",
 		"description": "Point one or more of these at a fire to put it out!\n\nYou can now play fireman in your very own game!"
+	},
+	"1dfdae1a-93af-41b3-bd08-fd88a095e8f6":
+	{
+		"title": "Napalm bomb",
+		"description": "Careful with this! Look at it wrongly and it'll explode!\n\n\n#ffff00!WARNING!\n#ffffffFire physics are involved!"
 	}
 }
