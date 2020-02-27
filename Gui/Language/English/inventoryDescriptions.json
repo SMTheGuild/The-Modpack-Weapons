@@ -62,7 +62,12 @@
 	},
 	"1dfdae1a-93af-41b3-bd08-fd88a095e8f6":
 	{
-		"title": "Napalm bomb",
-		"description": "Careful with this! Look at it wrongly and it'll explode!\n\n\n#ffff00!WARNING!\n#ffffffFire physics are involved!"
+		"title": "Napalm Bomb",
+		"description": "Careful with this! Look at it wrongly and it'll explode!\n\n\n#ffff00!WARNING!\n#ffffffFire physics are used!"
+	},
+	"61ca4cef-9926-4cdf-8535-f7bbf60c31f8":
+	{
+		"title": "Napalm Bomb Launcher",
+		"description": "Roast dem enemies!\n\n\n#ffff00!WARNING!\n#ffffffFire physics are used!"
 	}
 }

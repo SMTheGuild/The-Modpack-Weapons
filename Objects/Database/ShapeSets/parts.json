@@ -643,6 +643,37 @@
 			"density": 1250.0,
 			"physicsMaterial": "Metal",
 			"previewRotation": [ 1, 0, 0, 0, 1, 0, 0, 0, 1 ]
-		}
+		},
+		{
+            "uuid": "61ca4cef-9926-4cdf-8535-f7bbf60c31f8",
+            "renderable": {
+                "lodList": [
+                    {
+                        "subMeshList": [
+                            {
+                                "textureList": [
+                                    "$MOD_DATA/Objects/Textures/Robot2_dif.png",
+                                    "$MOD_DATA/Objects/Textures/Plates_asg.png",
+                                    "$MOD_DATA/Objects/Textures/Robot2_Normal.png"
+                                ],
+                                "material": "DifAsgNor"
+                            }
+                        ],
+                        "mesh": "$MOD_DATA/Objects/Mesh/RobotWeapon.fbx"
+                    }
+                ]
+            },
+            "rotationSet": "PropY",
+            "density": 250,
+            "color": "C60300",
+            "box": { "x": 3, "y": 2, "z": 1 },
+            "physicsMaterial": "Metal",
+            "sticky": "-X+X-Y+Y-Z+Z",
+            "qualityLevel": 2,
+			"scripted": {
+				"filename": "$MOD_DATA/Scripts/napalmLauncher.lua",
+				"classname": "napalmLauncher"
+			}
+        }
    ]
 }
