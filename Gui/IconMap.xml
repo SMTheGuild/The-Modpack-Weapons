@@ -41,6 +41,12 @@
             <Index name="e31b12ea-4341-4900-b43a-649da0f97f32">
                 <Frame point="370 74"/>
             </Index>
+            <Index name="1dfdae1a-93af-41b3-bd08-fd88a095e8f6">
+                <Frame point="0 148"/>
+            </Index>
+            <Index name="61ca4cef-9926-4cdf-8535-f7bbf60c31f8">
+                <Frame point="74 148"/>
+            </Index>
         </Group>
     </Resource>
 </MyGUI>
