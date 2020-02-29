@@ -1,6 +1,5 @@
 dofile "SE_Loader.lua"
 
-sm.isDev = true
 -- the following code prevents re-load of this file, except if in '-dev' mode.  -- fixes broken sh*t by devs.
 if napalmLauncher and not sm.isDev then -- increases performance for non '-dev' users.
 	return -- perform sm.checkDev(shape) in server_onCreate to set sm.isDev
@@ -36,7 +35,7 @@ function napalmLauncher.server_onCreate( self )
 	self.projectileConfiguration = {
 		localPosition = true,			-- when true, position is relative to shape position and rotation
 	    localVelocity = true,			-- when true, position is relative to shape position and rotation
-	    position = sm.vec3.new(0.5,0,0), -- required
+	    position = sm.vec3.new(-0.5,0,0), -- required
 	    velocity = sm.vec3.new(0,0,0), -- required
 	    --acceleration = 0, 			-- default: 0  				adds (acceleration*normalized velocity) to velocity each tick,
 	    --friction = 0.003, 			-- default: 0.003			velocity = velocity*(1-friction)
