@@ -712,6 +712,29 @@
 			}
 		]
 	},
+	"waters": // water particle
+	{
+		"maxInstances": 420,
+		"parameterList":
+		{
+			"color": "7777df",
+			"intensity": 0.6,
+			"Size": 0.0,
+			"Velocity": 0.0,
+			"radius": 10,
+			"Material": 0.0,
+			"RemainingInstances": 420
+		},
+		"effectList":
+		[
+			{
+				"type": "particle",
+				"name": "water",
+				"offset": { "x": 0.0, "y": 0.0, "z": 0.0 },
+				"delay": 0.0
+			}
+		]
+	},
 	"water": //water that comes out the watergun
 	{
 		"maxInstances": 420,

@@ -510,6 +510,37 @@
 			"qualityLevel": 4
 		},
 		{
+			"uuid": "b83fa9dd-929d-478d-8bf4-07fb98931fed",
+			"renderable": {
+				"lodList": [
+					{
+                        "subMeshList": [
+                            {
+                                "textureList": [
+                                    "$MOD_DATA/Objects/Textures/Robot2_dif.png",
+                                    "$MOD_DATA/Objects/Textures/Plates_asg.png",
+                                    "$MOD_DATA/Objects/Textures/Robot2_Normal.png"
+                                ],
+                                "material": "DifAsgNor"
+                            }
+                        ],
+                        "mesh": "$MOD_DATA/Objects/Mesh/RobotWeapon.fbx"
+					}
+				]
+			},
+			"scripted" : {
+				"filename": "$MOD_DATA/Scripts/bigWatergun.lua",
+				"classname": "bigWatergun"
+			},
+			"rotationSet": "PropY",
+			"density": 1250,
+			"color": "0046df",
+            "box": { "x": 3, "y": 2, "z": 1 },
+			"physicsMaterial": "Metal",
+			"sticky": "-X+X-Y+Y-Z+Z",
+			"qualityLevel": 4
+		},
+		{
 			"uuid": "1dfdae1a-93af-41b3-bd08-fd88a095e8f6",
 			"renderable": {
 				"lodList": [
@@ -664,12 +695,12 @@
                 ]
             },
             "rotationSet": "PropY",
-            "density": 250,
+            "density": 1250,
             "color": "C60300",
             "box": { "x": 3, "y": 2, "z": 1 },
             "physicsMaterial": "Metal",
             "sticky": "-X+X-Y+Y-Z+Z",
-            "qualityLevel": 2,
+            "qualityLevel": 4,
 			"scripted": {
 				"filename": "$MOD_DATA/Scripts/napalmLauncher.lua",
 				"classname": "napalmLauncher"

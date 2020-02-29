@@ -1,0 +1,247 @@
+{
+   "system" : {
+      "emitters" : [
+         {
+            "billboard_origin" : "center",
+            "billboard_type" : "world",
+            "category" : "w revered col",
+            "collision" : "none",
+            "color" : {
+               "a" : 0.25,
+               "b" : 0.7,
+               "g" : 0.4,
+               "r" : 0.4
+            },
+            "default_particle_depth" : 0.0,
+            "default_particle_height" : 0.5,
+            "default_particle_width" : 0.5,
+            "diffuse" : "Textures/Glow/glow_smokeglow01.tga",
+            "direction_type" : "object",
+            "duration" : 0.01,
+            "emission_mode" : "loop", // default/burst/loop, burst also works but a little more ugly
+            "emission_rate" : 10,  // how much instances of this should this instance of the emittor contain at a time.
+            "glow" : true,
+            "glow_exposure_delta" : 1.0,
+            "glow_exposure_max" : 20.0,
+            "glow_exposure_min" : 2.0,
+            "glow_exposure_val" : 10.0,
+            "glow_strength" : 0.3,
+            "guid" : 0,
+            "hidden" : false,
+            "inherit_velocity" : false,
+            "keep_local" : true,
+            "lifetime_loss" : 0.0,
+            "name" : "Col Checker FRICTION TEST",
+            "params" : 0,
+            "particle" : "billboard",
+            "scene_blend" : "alpha_blend",
+            "shadows" : false,
+            "start_color" : "solid",
+            "sub" : [
+                     //*/
+					 {
+                        "ASG_map" : "",
+                        "alpha" : false,
+                        "billboard_origin" : "center",
+                        "billboard_type" : "world",
+                        "category" : "",
+                        "collision" : "none",
+                        "color" : { // ignored cuz of "effects":{color}
+                           "a" : 1.0,
+                           "b" : 0.0,
+                           "g" : 0.0,
+                           "r" : 0.0
+                        },
+                        "default_particle_depth" : 0.0,
+						"default_particle_height" : 1.0,
+						"default_particle_width" : 1.0,
+                        "diffuse" : "Textures/Fire/FireFlames_Animated_04(BlendAdd).tga",
+                        "direction_type" : "object",
+                        "duration" : 4.0,
+                        "effects" : [
+                           {
+                              "animation" : "sheet",
+                              "end_texture_coords_range" : 16,
+                              "fps" : 30,
+                              "guid" : 7,
+                              "mode" : "over_life_time",
+                              "name" : "TextureAnimator",
+                              "repeat" : false,
+                              "start_texture_coords_range" : 0,
+                              "toggle" : true
+                           },
+                           {
+                              "control_point" : [
+                                 {
+                                    "color" : {
+                                       "a" : 0.0,
+                                       "b" : 0.019531250,
+                                       "g" : 0.004978554788976908,
+                                       "r" : 0.0
+                                    },
+                                    "time" : 0.0
+                                 },
+                                 {
+                                    "color" : {
+                                       "a" : 1.0,
+                                       "b" : 0.6,
+                                       "g" : 0.4,
+                                       "r" : 0.4
+                                    },
+                                    "time" : 0.1408450752496719
+                                 },
+                                 {
+                                    "color" : {
+                                       "a" : 0.5156250,
+                                       "b" : 0.7,
+                                       "g" : 0.4,
+                                       "r" : 0.4
+                                    },
+                                    "time" : 0.6535211205482483
+                                 },
+                                 {
+                                    "color" : {
+                                       "a" : 0.0,
+                                       "b" : 0.0,
+                                       "g" : 0.0,
+                                       "r" : 0.0
+                                    },
+                                    "time" : 1.0
+                                 }
+                              ],
+                              "guid" : 8,
+                              "name" : "Color",
+                              "toggle" : true
+                           },
+                           {
+                              "control_point" : [
+                                 {
+                                    "scale" : 0.2,
+                                    "time" : 0.0
+                                 },
+                                 {
+                                    "scale" : 0.5,
+                                    "time" : 0.2
+                                 },
+                                 {
+                                    "scale" : 0.7730263471603394,
+                                    "time" : 1.0
+                                 }
+                              ],
+                              "fade" : 0.50,
+                              "guid" : 9,
+                              "length" : 1.0,
+                              "name" : "Cutoff",
+                              "toggle" : true
+                           },
+                           {
+                              "axis" : "uniform-scale",
+                              "base_scale" : 0.0,
+                              "control_point" : [
+                                 {
+                                    "scale" : 0.9013158082962036,
+                                    "time" : 0.0
+                                 },
+                                 {
+                                    "scale" : 1.440789461135864,
+                                    "time" : 1.0
+                                 }
+                              ],
+                              "guid" : 10,
+                              "max_scale" : 2.0,
+                              "name" : "Scale",
+                              "toggle" : true
+                           }
+                        ],
+                        "emission_mode" : "burst",
+                        "emission_rate" : 35,
+                        "glow" : true,
+                        "glow_exposure_delta" : 0.0,
+                        "glow_exposure_max" : 15,  // amount of glowy dots
+                        "glow_exposure_min" : 15,  // amount of glowy dots
+                        "glow_exposure_val" : 15,  // amount of glowy dots
+                        "glow_strength" : 0.4, //strength
+                        "gradient" : {
+                           "control_point" : [
+                              {
+                                 "color" : {
+                                    "a" : 0.7,
+                                    "b" : 1.0,
+                                    "g" : 0.7,
+                                    "r" : 0.0
+                                 },
+                                 "time" : 0.0
+                              },
+                              {
+                                 "color" : {
+                                    "a" : 0.3,
+                                    "b" : 0.7,
+                                    "g" : 0.3,
+                                    "r" : 0.0
+                                 },
+                                 "time" : 1.0
+                              }
+                           ]
+                        },
+                        "guid" : 6,
+                        "height_delta" : 0.1500000059604645,
+                        "height_max" : 1.149999976158142,
+                        "height_min" : 0.8500000238418579,
+                        "height_val" : 1.0,
+                        "hidden" : false,
+                        "inherit_velocity" : true,
+                        "keep_local" : false,
+                        "lifetime_loss" : 0.0,
+                        "params" : 0,
+                        "particle" : "billboard",
+                        "repeat_delay" : 0.0,
+                        "rotation_axis" : {
+                           "x" : 0.0,
+                           "y" : 0.0,
+                           "z" : 1.0
+                        },
+						"rotation_delta" : 1.0,
+						"rotation_max" : 5.0,
+						"rotation_min" : 0.0,
+                        "scene_blend" : "alpha_blend",// addative alpha_blend blend_add
+                        "shadows" : true,
+                        "soft_particles_bias" : 512,
+                        "sort" : 0,
+                        "sphere_radius" : 0.2,
+                        "start_color" : "random",
+                        "sub" : null,
+                        "sub_emit" : "birth",
+                        "surface" : true,
+                        "texture_coords_columns" : 4,
+                        "texture_coords_rows" : 4,
+                        "time_to_live_delta" : 0.1500000059604645,
+                        "time_to_live_max" : 0.7999999523162842,
+                        "time_to_live_min" : 0.4999999701976776,
+                        "time_to_live_val" : 0.6499999761581421,
+                        "type" : "sphere",
+                        "visual_particle_quota" : 1001
+                     }
+                  ],
+		    "sub_emit" : "die",
+			"sphere_radius" : 0.15,
+            "surface" : false,
+            "texture_coords_columns" : 1,
+            "texture_coords_rows" : 1,
+            "time_to_live_delta" : 0.0,
+            "time_to_live_max" : 0.1000000014901161,
+            "time_to_live_min" : 0.1000000014901161,
+            "time_to_live_val" : 0.1000000014901161,
+            "type" : "sphere", //sphere
+            "visual_particle_quota" : 1,
+            "width_delta" : 0.0,
+            "width_max" : 1.50,
+            "width_min" : 1.50,
+            "width_val" : 1.50
+         }
+      ],
+      "scale" : 1.7,
+      "scale_time" : 1.0,
+      "scale_velocity" : 1.0,
+      "system_type" : "stream"
+   }
+}
