@@ -97,34 +97,46 @@ function bigWatergun.server_onCollision(projectile)
 	
 	if projectileSpeed > 12 then
 		speed = 5
-		friction = 0.05
+		friction = 0.1
 		direction = 
 			sm.noise.gunSpread( raycast.normalWorld * 0.05, 90) + 
-			sm.vec3.rotate(-projectile.velocity * 0.1, math.pi, raycast.normalWorld) -- velocity
+			sm.vec3.rotate(-projectile.velocity * 0.16, math.pi, raycast.normalWorld) -- velocity
 		--print('hard',direction, projectile.velocity)
 	else
 		speed = 1
 		friction = 0.0005
 		direction = 
-			sm.noise.gunSpread(up * updown * 0.15, 90) + 
-			sm.vec3.rotate(-projectile.velocity*0.7, math.pi, raycast.normalWorld) + -- velocity
+			sm.noise.gunSpread(up * updown * 0.07, 90) + 
+			sm.vec3.rotate(-projectile.velocity*0.8, math.pi, raycast.normalWorld) + -- velocity
 			(raycast.normalWorld - up * raycast.normalWorld:dot(up))*15 -- on a slant
 		direction = sm.noise.gunSpread(direction, 2)
 		--print('softhit',raycast.normalWorld, projectile.velocity, direction)
-		if direction:length() > 5 then direction = direction/2 end
+		if direction:length() > 6 then direction = direction/2 end
 		
 	end
 	
 	if raycast.type == "character" then
 		local character = raycast:getCharacter()
-		local dir = (character.worldPosition - projectile.position):normalize() * speed * 150
-		dir.z = dir.z/2
+		local diff = (character.worldPosition - projectile.position):normalize()
+		--dir.z = dir.z/2
+		local dir = projectile.velocity * 25 + diff/(diff:length() + 0.3) * 150
 		sm.physics.applyImpulse(character, dir)
 	end
+	if raycast.type == "body" then
+		local shape = raycast:getShape()
+		sm.physics.applyImpulse(shape, projectile.velocity:normalize() * sm.util.clamp(shape.mass*15,20,200), true)
+	end
+	
+	customFire.server_spawnWater({}, {
+		position = projectile.position, 
+		velocity = up,
+		radius = 7, --length2, so 2.6 ish x 4 = 10 blocks range
+		power = 300
+	})
 	
 	customProjectile.server_spawnProjectile({},
 	{
-	    position = projectile.position - projectile.velocity:normalize()/3 + sm.vec3.new(0,0,0.1), -- required
+	    position = projectile.position + sm.vec3.new(0,0,0.1), -- required
 	    velocity = direction * speed, -- required
 	    --acceleration = 0, 			-- default: 0  				adds (acceleration*normalized velocity) to velocity each tick,
 	    friction = friction, 			-- default: 0.003			velocity = velocity*(1-friction)
