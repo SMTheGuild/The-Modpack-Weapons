@@ -43,7 +43,6 @@ function watergun.server_onFixedUpdate(self, dt)
 		self.timeout = 6
 		local direction = sm.noise.gunSpread(-self.shape.right, 15) * 3
 		local hit, result = sm.physics.raycast(self.shape.worldPosition, self.shape.worldPosition + direction)
-		self.pos = result.valid and result.pointWorld or self.shape.worldPosition + direction
 		customFire.server_spawnWater(self, {
 			position = result.valid and result.pointWorld or self.shape.worldPosition + direction, 
 			velocity = sm.noise.gunSpread(direction*20, 5)
