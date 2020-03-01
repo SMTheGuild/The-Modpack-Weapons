@@ -97,7 +97,7 @@ function bigWatergun.server_onCollision(projectile)
 	
 	if projectileSpeed > 12 then
 		speed = 5
-		friction = 0.1
+		friction = 0.05
 		direction = 
 			sm.noise.gunSpread( raycast.normalWorld * 0.05, 90) + 
 			sm.vec3.rotate(-projectile.velocity * 0.16, math.pi, raycast.normalWorld) -- velocity
@@ -130,7 +130,7 @@ function bigWatergun.server_onCollision(projectile)
 	customFire.server_spawnWater({}, {
 		position = projectile.position, 
 		velocity = up,
-		radius = 7, --length2, so 2.6 ish x 4 = 10 blocks range
+		radius = 16, --length2, so 4 x 4 = 16 blocks range
 		power = 300
 	})
 	
@@ -170,6 +170,7 @@ function bigWatergun.server_onFixedUpdate(self, dt)
 	if active and not self.timeout then
 		active = false
 		self.timeout = 6
+		self.projectileConfiguration.velocity = sm.noise.gunSpread(sm.vec3.new(-20,0,0),10) * math.random(980,1000)/1000
 		self:server_spawnProjectile(self.projectileConfiguration )
 	end
 	
