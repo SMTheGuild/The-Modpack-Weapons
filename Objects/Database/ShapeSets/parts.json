@@ -705,6 +705,37 @@
 				"filename": "$MOD_DATA/Scripts/napalmLauncher.lua",
 				"classname": "napalmLauncher"
 			}
+        },
+		{
+            "uuid": "da06ceac-c295-40a0-9c15-930d58bf9b5c",
+            "renderable": {
+                "lodList": [
+                    {
+                        "subMeshList": [
+                            {
+                                "textureList": [
+                                    "$MOD_DATA/Objects/Textures/SmokeDetector.png",
+									"$GAME_DATA/Textures/transparent.tga", 
+									"$GAME_DATA/Textures/nonor_nor.png"
+                                ],
+                                "material": "DifAsgNor"
+                            }
+                        ],
+                        "mesh": "$MOD_DATA/Objects/Mesh/smokeDetector.obj"
+                    }
+                ]
+            },
+            "rotationSet": "PropY",
+            "density": 500,
+            "color": "eeeeee",
+            "box": { "x": 1, "y": 1, "z": 1 },
+            "physicsMaterial": "Plastic",
+            "sticky": "-Y",
+            "qualityLevel": 2,
+			"scripted": {
+				"filename": "$MOD_DATA/Scripts/smokeDetector.lua",
+				"classname": "smokeDetector"
+			}
         }
    ]
 }
