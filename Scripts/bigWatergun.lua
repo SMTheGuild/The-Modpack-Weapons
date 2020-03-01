@@ -1,7 +1,7 @@
 dofile "SE_Loader.lua"
 
 
--- the following code prevents re-load of this file, except if in '-dev' mode.  -- fixes broken sh*t by devs.
+-- the following code prevents re-load of this file, except if in '-dev' mode.
 if bigWatergun and not sm.isDev then -- increases performance for non '-dev' users.
 	return -- perform sm.checkDev(shape) in server_onCreate to set sm.isDev
 end
@@ -21,6 +21,7 @@ function bigWatergun.client_onRefresh(self)
 	self:client_onCreate()
 end
 function bigWatergun.client_onCreate(self)
+	self:client_attachScript("customFire")
 	self:client_attachScript("customProjectile")
 	self.shooteffect = sm.effect.createEffect("water", self.interactable)
 	self.shooteffect:setOffsetRotation( sm.vec3.getRotation(sm.vec3.new( 1, 0, 0 ),sm.vec3.new( 0, 0, 1 )))
@@ -42,7 +43,7 @@ function bigWatergun.server_onCreate(self)
 	    --friction = 0.003, 			-- default: 0.003			velocity = velocity*(1-friction)
 	    --gravity = 10, 				-- default: gamegrav or 10	adds (gravity*dt) to velocity each tick
 	    effect = "waters", 			-- default: "CannonShot"	effect used for the projectile
-	    size = 1, 						-- default: 1 (blocks)		used for projectile collision detection
+	    size = 0.3, 						-- default: 1 (blocks)		used for projectile collision detection
 	    lifetime = 15, 					-- default: 30 (seconds)	projectile will explode after this amount of time in air
 	    --spawnAudio = "CannonAudio", 	-- default: nil (no audio)	effect used for the audio upon spawn
 	    destructionLevel = 0, 			-- default: 6				1: cardboard, 2: cautionblock(plastic), 3: wood, 4: concrete(stone), 5: metal, 6: everything?
@@ -50,7 +51,7 @@ function bigWatergun.server_onCreate(self)
 	    impulseRadius = 1, 				-- default: 0.5	(meters)	radius in which players/blocks will be pushed
 	    magnitude = 3, 					-- default: 10				defines how hard players/blocks will be pushed
 		explodeEffect = "PropaneTank - ExplosionSmall", 			-- default: "PropaneTank - ExplosionSmall" 	effect used for explosion
-		server_onCollision = "bigWatergun.server_onCollision"
+		server_onCollision = "bigWatergun.server_onProjectileCollision"
 	}
 	self.server_spawnProjectile = customProjectile.server_spawnProjectile
 end
@@ -58,7 +59,7 @@ end
 local waterinteractions = {} -- [tick] = val
 local lastTick = sm.game.getCurrentTick()
 
-function bigWatergun.server_onCollision(projectile)
+function bigWatergun.server_onProjectileCollision(projectile)
 	
 	local tick = sm.game.getCurrentTick()
 	local tickmod40 = tick%40+1
@@ -89,28 +90,32 @@ function bigWatergun.server_onCollision(projectile)
 	local projectileSpeed = projectile.velocity:length()
 	
 	local up = sm.vec3.new(0,0,1)
-	local speed = 1
 	local direction;
 	local friction;
 	local updown = up:dot(raycast.normalWorld) -- 1: up, -1 down
 	if updown == 0 then updown = 1 end
 	
 	if projectileSpeed > 12 then
-		speed = 5
-		friction = 0.05
-		direction = 
-			sm.noise.gunSpread( raycast.normalWorld * 0.05, 90) + 
-			sm.vec3.rotate(-projectile.velocity * 0.16, math.pi, raycast.normalWorld) -- velocity
-		--print('hard',direction, projectile.velocity)
+		friction = 0.01
+		if math.random(8) == 1 then
+			direction = 
+				raycast.normalWorld * 1 + sm.vec3.new(0,0,3)
+			direction = sm.noise.gunSpread(direction, 120)
+		else
+			direction = 
+				sm.noise.gunSpread( raycast.normalWorld * 0.15, 110) + 
+				sm.vec3.rotate(-projectile.velocity * 0.6, math.pi, raycast.normalWorld) -- velocity
+			--print('hard',direction, projectile.velocity)
+			direction = sm.noise.gunSpread(direction, 15)
+		end
 	else
-		speed = 1
 		friction = 0.0005
 		direction = 
 			sm.noise.gunSpread(up * updown * 0.07, 90) + 
-			sm.vec3.rotate(-projectile.velocity*0.8, math.pi, raycast.normalWorld) + -- velocity
+			sm.vec3.rotate(-projectile.velocity * 0.7, math.pi, raycast.normalWorld) + -- velocity
 			(raycast.normalWorld - up * raycast.normalWorld:dot(up))*15 -- on a slant
 		direction = sm.noise.gunSpread(direction, 2)
-		--print('softhit',raycast.normalWorld, projectile.velocity, direction)
+		--print('softhit',raycast.normalWorld, projectile.velocity:dot( direction) + projectile.velocity:length())
 		if direction:length() > 6 then direction = direction/2 end
 		
 	end
@@ -130,19 +135,19 @@ function bigWatergun.server_onCollision(projectile)
 	customFire.server_spawnWater({}, {
 		position = projectile.position, 
 		velocity = up,
-		radius = 16, --length2, so 4 x 4 = 16 blocks range
+		radius = 16 + (projectile.size == 0.3 and 6 or 0), --length2, so 4 x 4 = 16 blocks range
 		power = 300
 	})
 	
 	customProjectile.server_spawnProjectile({},
 	{
 	    position = projectile.position + sm.vec3.new(0,0,0.1), -- required
-	    velocity = direction * speed, -- required
+	    velocity = direction, -- required
 	    --acceleration = 0, 			-- default: 0  				adds (acceleration*normalized velocity) to velocity each tick,
 	    friction = friction, 			-- default: 0.003			velocity = velocity*(1-friction)
 	    gravity = 8, 				-- default: gamegrav or 10	adds (gravity*dt) to velocity each tick
 	    effect = "waters", 			-- default: "CannonShot"	effect used for the projectile
-	    size = 1, 						-- default: 1 (blocks)		used for projectile collision detection
+	    size = 0.2, 						-- default: 1 (blocks)		used for projectile collision detection
 	    lifetime = lifetime, 					-- default: 30 (seconds)	projectile will explode after this amount of time in air
 	    --spawnAudio = "CannonAudio", 	-- default: nil (no audio)	effect used for the audio upon spawn
 	    destructionLevel = 0, 			-- default: 6				1: cardboard, 2: cautionblock(plastic), 3: wood, 4: concrete(stone), 5: metal, 6: everything?
@@ -150,7 +155,7 @@ function bigWatergun.server_onCollision(projectile)
 	    impulseRadius = 1, 				-- default: 0.5	(meters)	radius in which players/blocks will be pushed
 	    magnitude = 3, 					-- default: 10				defines how hard players/blocks will be pushed
 		explodeEffect = "PropaneTank - ExplosionSmall", 			-- default: "PropaneTank - ExplosionSmall" 	effect used for explosion
-		server_onCollision = "bigWatergun.server_onCollision"
+		server_onCollision = "bigWatergun.server_onProjectileCollision"
 	}
 	
 	
@@ -169,8 +174,8 @@ function bigWatergun.server_onFixedUpdate(self, dt)
 	
 	if active and not self.timeout then
 		active = false
-		self.timeout = 6
-		self.projectileConfiguration.velocity = sm.noise.gunSpread(sm.vec3.new(-20,0,0),10) * math.random(980,1000)/1000
+		self.timeout = 5
+		self.projectileConfiguration.velocity = sm.noise.gunSpread(sm.vec3.new(-20,0,0),8) * math.random(980,1000)/1000
 		self:server_spawnProjectile(self.projectileConfiguration )
 	end
 	
