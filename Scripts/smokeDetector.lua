@@ -14,7 +14,7 @@ smokeDetector.connectionOutput = sm.interactable.connectionType.logic -- none, l
 smokeDetector.colorNormal = sm.color.new(0xdf7000ff)
 smokeDetector.colorHighlight = sm.color.new(0xef8010ff)
 
-smokeDetector.range = math.sqrt(8*4) -- length2 comparison!
+smokeDetector.range = math.sqrt(16*4) -- length2 comparison!
 
 
 function smokeDetector.client_onRefresh(self)
