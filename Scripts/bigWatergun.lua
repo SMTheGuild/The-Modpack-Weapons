@@ -87,37 +87,45 @@ function bigWatergun.server_onProjectileCollision(projectile)
 	
 	
 	local raycast = projectile.hit
+	local normalWorld = raycast.normalWorld
 	local projectileSpeed = projectile.velocity:length()
 	
 	local up = sm.vec3.new(0,0,1)
 	local direction;
 	local friction;
-	local updown = up:dot(raycast.normalWorld) -- 1: up, -1 down
+	local updown = up:dot(normalWorld) -- 1: up, -1 down
 	if updown == 0 then updown = 1 end
 	
 	if projectileSpeed > 12 then
-		friction = 0.01
-		if math.random(8) == 1 then
-			direction = 
-				raycast.normalWorld * 1 + sm.vec3.new(0,0,3)
-			direction = sm.noise.gunSpread(direction, 120)
+		friction = 0.005
+		if math.random(2) == 1 then
+			local random = sm.vec3.random() * math.random(15)/15
+			local tangent = random - up * random:dot(up)
+			direction = sm.noise.gunSpread(up * (1 + math.random(7)/3), 70) + normalWorld + tangent
 		else
 			direction = 
-				sm.noise.gunSpread( raycast.normalWorld * 0.15, 110) + 
-				sm.vec3.rotate(-projectile.velocity * 0.6, math.pi, raycast.normalWorld) -- velocity
+				sm.noise.gunSpread( normalWorld * 0.3, 90) + 
+				sm.vec3.rotate(-projectile.velocity * 0.2, math.pi, normalWorld) -- velocity
 			--print('hard',direction, projectile.velocity)
-			direction = sm.noise.gunSpread(direction, 15)
 		end
 	else
 		friction = 0.0005
 		direction = 
-			sm.noise.gunSpread(up * updown * 0.07, 90) + 
-			sm.vec3.rotate(-projectile.velocity * 0.7, math.pi, raycast.normalWorld) + -- velocity
-			(raycast.normalWorld - up * raycast.normalWorld:dot(up))*15 -- on a slant
-		direction = sm.noise.gunSpread(direction, 2)
-		--print('softhit',raycast.normalWorld, projectile.velocity:dot( direction) + projectile.velocity:length())
-		if direction:length() > 6 then direction = direction/2 end
+			sm.noise.gunSpread(up * updown * 0.1, 20) + 
+			sm.vec3.rotate(-projectile.velocity * 0.97, math.pi, normalWorld)-- velocity
 		
+		direction.z = direction.z * 0.7
+		
+		direction = direction + (normalWorld - up * normalWorld:dot(up))*10 -- on a slant
+		
+		
+		if (direction - projectile.velocity):length() > projectileSpeed*2 or math.random(5) == 1 then -- bumped into something, or just random for the lol of it
+			local random = sm.vec3.random() * math.random(30)/15
+			local tangent = random - up * random:dot(up)
+			direction = direction / 3 + tangent
+		end
+		--print('softhit',normalWorld, projectile.velocity:dot( direction) + projectile.velocity:length())
+		if direction:length() > 6 then direction = direction/2 end
 	end
 	
 	if raycast.type == "character" then
@@ -141,7 +149,7 @@ function bigWatergun.server_onProjectileCollision(projectile)
 	
 	customProjectile.server_spawnProjectile({},
 	{
-	    position = projectile.position + sm.vec3.new(0,0,0.1), -- required
+	    position = projectile.position + sm.vec3.new(0,0,0.1) + normalWorld * 0.1, -- required
 	    velocity = direction, -- required
 	    --acceleration = 0, 			-- default: 0  				adds (acceleration*normalized velocity) to velocity each tick,
 	    friction = friction, 			-- default: 0.003			velocity = velocity*(1-friction)
@@ -177,6 +185,7 @@ function bigWatergun.server_onFixedUpdate(self, dt)
 		self.timeout = 5
 		self.projectileConfiguration.velocity = sm.noise.gunSpread(sm.vec3.new(-20,0,0),8) * math.random(980,1000)/1000
 		self:server_spawnProjectile(self.projectileConfiguration )
+		sm.physics.applyImpulse( self.shape, -self.projectileConfiguration.velocity/dt, false )
 	end
 	
 	if self.timeout then -- lazy way to generate timeout
