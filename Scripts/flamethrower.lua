@@ -22,7 +22,7 @@ flamethrower.connectionOutput = sm.interactable.connectionType.none
 flamethrower.colorNormal = sm.color.new( 0x009999ff  )
 flamethrower.colorHighlight = sm.color.new( 0x11B2B2ff  )
 flamethrower.poseWeightCount = 1
-flamethrower.fireDelay = 11 --ticks
+flamethrower.fireDelay = 9 --ticks
 
 function flamethrower.server_onCreate( self ) 
 	self.fireDelayProgress = 0
