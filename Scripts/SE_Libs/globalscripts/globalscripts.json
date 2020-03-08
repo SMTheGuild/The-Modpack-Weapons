@@ -4,6 +4,7 @@
 		"class": "customProjectile"
 	},
 	"customFire": {
+		"crossModUuid":"65f72263-2d58-4753-87fa-a5d6cc2de8ef",
 		"script": "customFire.bin",
 		"class": "customFire"
 	},
