@@ -78,6 +78,6 @@
 	"da06ceac-c295-40a0-9c15-930d58bf9b5c":
 	{
 		"title": "Smoke Detector",
-		"description": "Goes off when a fire is nearby! QUICK! Take fire precautions now while it's still possible!\n\nDetection radius: 16 blocks"
+		"description": "Goes off when a fire is nearby! QUICK! Take fire precautions now while it's still possible!\n\nDetection radius: 16 blocks\nNumber input: custom range\nlogic input: turn on/off"
 	}
 }
