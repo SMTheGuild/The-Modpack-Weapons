@@ -44,7 +44,7 @@ dofile "SE_Libs/vec3.lua"
 --dofile "SE_Libs/wireless.lua"
 --dofile "SE_Libs/overdrive.lua"
 --dofile "SE_Libs/fakeplayer.lua"
-dofile "SE_Libs/globalScript.bin"
+dofile "SE_Libs/globalScript.lua"
 --dofile "SE_Libs/scriptedProjectile.lua"
 --dofile "SE_Libs/fireProjectile.lua"
 

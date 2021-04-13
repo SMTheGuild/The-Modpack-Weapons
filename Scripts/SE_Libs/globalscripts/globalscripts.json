@@ -1,15 +1,15 @@
 {
 	"customProjectile": {
-		"script": "customProjectile.bin",
+		"script": "customProjectile.lua",
 		"class": "customProjectile"
 	},
 	"customFire": {
 		"crossModUuid":"65f72263-2d58-4753-87fa-a5d6cc2de8ef",
-		"script": "customFire.bin",
+		"script": "customFire.lua",
 		"class": "customFire"
 	},
 	"stickyBomb": {
-		"script": "stickyBombs.bin",
+		"script": "stickyBombs.lua",
 		"class": "stickyBomb"
 	}
 }
