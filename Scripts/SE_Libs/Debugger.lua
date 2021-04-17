@@ -30,13 +30,15 @@ end
 function se.isModder()  -- an 'is a known modder' check by Brent Batch
 	if sm.game.getCurrentTick() > 0 then 
 		local modders = {["Brent Batch"] = true, ["TechnologicNick"] = true, ["MJM"] = true, ["Mini"] = true, ["YT_BlueFlame"] = true} 
-		local name = sm.player.getAllPlayers()[1].name 
-		if modders[name] then 
-			function se.isModder() return true end 
-			return true 
-		else 
-			function se.isModder() return false end 
-			return false 
+		local host = sm.player.getAllPlayers()[1]
+		if not host then return false end
+		local name = host.name
+		if modders[name] then
+			function se.isModder() return true end
+			return true
+		else
+			function se.isModder() return false end
+			return false
 		end
 	end
 end

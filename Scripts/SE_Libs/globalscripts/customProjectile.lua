@@ -111,7 +111,7 @@ function customProjectile.client_createProjectile(self, data)
 	local success, effect = pcall(sm.effect.createEffect, effect)
 	if not success then sm.log.error(effect) return end -- if effect doesn't exist, just return
 	effect:setPosition(position)
-	effect:setVelocity(velocity)
+	--effect:setVelocity(velocity)
 	if velocity:length2() > 0.0001 then
 		effect:setRotation(sm.vec3.getRotation( rotation, velocity:normalize() ))
 	end
@@ -169,8 +169,9 @@ function customProjectile.client_onFixedUpdate(self,dt)
 			
 			proj.position = proj.position + proj.velocity*dt
 			
-			--proj.effect:setPosition(proj.position) -- causes 'flicker', we don't use this shit
-			proj.effect:setVelocity(proj.velocity)
+
+			proj.effect:setPosition(proj.position) -- causes 'flicker', we don't use this shit
+			--proj.effect:setVelocity(proj.velocity) --setVelocity doesn't work as it did in 0.3 anymore
 			if proj.velocity:length2() > 0.0001 then
 				proj.effect:setRotation(sm.vec3.getRotation( proj.rotation, proj.velocity:normalize() ))
 			end

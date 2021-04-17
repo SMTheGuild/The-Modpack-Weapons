@@ -128,7 +128,7 @@ function stickyBomb.client_createBomb(self, data)
 	local shapeId, id, position, velocity, detonationTime, gravity = unpack(data)
 	local bomb = {effect = sm.effect.createEffect("StickyBomb"), position = position, velocity = velocity, detonationTime = detonationTime, grav = gravity}
 	bomb.effect:setPosition( position )
-	bomb.effect:setVelocity( velocity)
+	--bomb.effect:setVelocity( velocity)
 	bomb.effect:start()
 	if not self.ammo[shapeId] then self.ammo[shapeId] = {} end
 	self.ammo[shapeId][id] = bomb
@@ -219,10 +219,10 @@ function stickyBomb.client_onFixedUpdate(self,dt)
 			end
 			
 			-- animate bullet:
-			if math.random(5) == 1 then -- bullets are 'jumpy' if position is set too regulary
+			--if math.random(5) == 1 then -- bullets are 'jumpy' if position is set too regulary
 				bomb.effect:setPosition(bomb.position)
-			end
-			bomb.effect:setVelocity(bomb.velocity)
+			--end
+			--bomb.effect:setVelocity(bomb.velocity)
 			
 			if bomb.detonationTime < 0 then
 				bomb.effect:setPosition(sm.vec3.new(0,0,1000000))
