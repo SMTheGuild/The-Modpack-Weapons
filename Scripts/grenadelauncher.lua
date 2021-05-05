@@ -98,10 +98,6 @@ function grenadelauncher.client_onFixedUpdate( self, dt )
 	--print(self.bullets)
 	for k, bullet in pairs(self.bullets) do
 		if bullet then
-			if bullet.alive + dt > bullet.livetime then --lives for 2 sec, clean up after
-				bullet.effect:setPosition(sm.vec3.new(0,0,1000000))
-				bullet.effect:stop()
-			end
 			--predicted collision detect: 
 			--raycast & other crap
 			bullet.direction = bullet.direction*0.997 - sm.vec3.new(0,0,bullet.grav *0.1)
@@ -125,6 +121,7 @@ function grenadelauncher.client_onFixedUpdate( self, dt )
 			end
 			
 			bullet.pos = bullet.pos + bullet.direction* dt
+			bullet.effect:setPosition(bullet.pos)
 			bullet.effect:setVelocity(bullet.direction)
 			bullet.alive = bullet.alive + dt
 			
@@ -132,6 +129,12 @@ function grenadelauncher.client_onFixedUpdate( self, dt )
 				if bullet.rotation then bullet.rotation = sm.vec3.getRotation(bullet.direction, bullet.rotation * (bullet.spin * bullet.direction))
 				else bullet.rotation = bullet.spin end
 				bullet.effect:setRotation(bullet.rotation)
+			end
+			
+			if bullet.alive + dt > bullet.livetime then --lives for 2 sec, clean up after
+				bullet.effect:setPosition(sm.vec3.new(0,0,1000))
+				bullet.effect:setScale(sm.vec3.new(0,0,0.0001))
+				bullet.effect:stop()
 			end
 		end
 		if bullet.alive - dt > bullet.livetime then

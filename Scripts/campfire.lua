@@ -107,7 +107,8 @@ function campfire.client_onRefresh(self)
 	self:client_onCreate()
 end
 
-function campfire.client_onInteract(self)
+function campfire.client_onInteract(self, character, state)
+	if not state then return end
 	self.network:sendToServer('server_onInteract')
 end
 

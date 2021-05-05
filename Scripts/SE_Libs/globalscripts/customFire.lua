@@ -169,7 +169,7 @@ function customFire.server_spawnFire(self, data)
 			
 			
 			local fuse = shapeUuid == "0987b4fe-18fb-4c85-9238-026f204d00e8"
-			if shapeUuid == "82e504c3-4317-4953-8c70-e594f7397b23" --[[campfire]] then
+			if shapeUuid == "82e504c3-4317-4953-8c70-e594f7397b23" --[[campfire]] and sm.isServerMode() then
 				target.interactable.active = true
 				return
 			end
@@ -649,7 +649,7 @@ function customFire.client_createFire(self, data)
 		for k, v in pairs(sounds) do 
 			local eff, size, velocity, material = unpack(v)
 			eff:setParameter("Size",     size)
-			eff:setParameter("Velocity", velocity*volume)
+			eff:setParameter("Velocity_max_50", velocity*volume)
 			eff:setParameter("Material", material)
 			eff:setPosition(projectile.position)
 			eff:setVelocity(projectile.velocity)

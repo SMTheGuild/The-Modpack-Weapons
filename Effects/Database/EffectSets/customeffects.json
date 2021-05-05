@@ -814,14 +814,14 @@
 		"parameterList":{
 			"color": "CDCDFF",
 			"Size": 1.0,
-			"Velocity": 10.0,
+			"Velocity_max_50": 10.0,
 			"Material": 0.0
 		},
 		"effectList":[
 			{
 				"type": "audio",
 				"name": "Collision - Rolling",
-				"parameters":["Size","Velocity","Material"],
+				"parameters":["Size","Velocity_max_50","Material"],
 				"delay": 0.0
             }
         ]
@@ -831,14 +831,14 @@
 		"parameterList":{
 			"color": "CDCDFF",
 			"Size": 1.0,
-			"Velocity": 10.0,
+			"Velocity_max_50": 10.0,
 			"Material": 0.0
 		},
 		"effectList":[
 			{
 				"type": "audio",
 				"name": "Collision - Multiple",
-				"parameters":["Size","Velocity","Material"],
+				"parameters":["Size","Velocity_max_50","Material"],
 				"delay": 0.0
             }
         ]
