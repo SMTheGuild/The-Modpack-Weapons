@@ -265,7 +265,7 @@
 								"textureList": [
 									"$MOD_DATA/Objects/Textures/UniTex2_dif.png",
 									"$MOD_DATA/Objects/Textures/UniTex_asg.png",
-									"$GAME_DATA/Textures/nonor_nor.png"
+									"$GAME_DATA/Textures/nonor_nor.tga"
 								],
 								"material": "PoseAnimDifAsgNor"
 							}
@@ -487,7 +487,7 @@
 								"textureList": [
 									"$MOD_DATA/Objects/Textures/UniTex2_dif.png",
 									"$MOD_DATA/Objects/Textures/UniTex_asg.png",
-									"$GAME_DATA/Textures/nonor_nor.png"
+									"$GAME_DATA/Textures/nonor_nor.tga"
 								],
 								"material": "PoseAnimDifAsgNor"
 							}
@@ -581,7 +581,7 @@
 								"textureList": [
 									"$MOD_DATA/Objects/Textures/UniTex2_dif.png",
 									"$MOD_DATA/Objects/Textures/UniTex_asg.png",
-									"$GAME_DATA/Textures/nonor_nor.png"
+									"$GAME_DATA/Textures/nonor_nor.tga"
 								],
 								"material": "DifAsgNor"
 							}
@@ -747,7 +747,7 @@
                                 "textureList": [
                                     "$MOD_DATA/Objects/Textures/SmokeDetector.png",
 									"$GAME_DATA/Textures/transparent.tga", 
-									"$GAME_DATA/Textures/nonor_nor.png"
+									"$GAME_DATA/Textures/nonor_nor.tga"
                                 ],
                                 "material": "DifAsgNor"
                             }
