@@ -18,7 +18,7 @@
 								"textureList": [
 									"$MOD_DATA/Objects/Textures/UniTex2_dif.png",
 									"$MOD_DATA/Objects/Textures/UniTex_asg.png",
-									"$GAME_DATA/Textures/nonor_nor.png"
+									"$GAME_DATA/Textures/nonor_nor.tga"
 								],
 								"material": "PoseAnimDifAsgNor"
 							}
@@ -46,7 +46,7 @@
 								"textureList": [
 									"$MOD_DATA/Objects/Textures/UniTex2_dif.png",
 									"$MOD_DATA/Objects/Textures/UniTex_asg.png",
-									"$GAME_DATA/Textures/nonor_nor.png"
+									"$GAME_DATA/Textures/nonor_nor.tga"
 								],
 								"material": "PoseAnimDifAsgNor"
 							}
@@ -130,7 +130,7 @@
 								"textureList": [
 									"$MOD_DATA/Objects/Textures/skull_emitter_dif.png",
 									"$MOD_DATA/Objects/Textures/skull_emitter_asg.png",
-									"$GAME_DATA/Textures/nonor_nor.png"
+									"$GAME_DATA/Textures/nonor_nor.tga"
 								],
 								"material": "DifAsgNorAlphaFlip"
 							},
@@ -138,7 +138,7 @@
 								"textureList": [
 									"$MOD_DATA/Objects/Textures/skull_emitter_dif.png",
 									"$MOD_DATA/Objects/Textures/skull_emitter_asg.png",
-									"$GAME_DATA/Textures/nonor_nor.png"
+									"$GAME_DATA/Textures/nonor_nor.tga"
 								],
 								"material": "DifAsgNor"
 							}
@@ -220,7 +220,7 @@
 								"textureList": [
 									"$MOD_DATA/Objects/Textures/UniTex_dif.png",
 									"$MOD_DATA/Objects/Textures/UniTex_asg.png",
-									"$GAME_DATA/Textures/nonor_nor.png"
+									"$GAME_DATA/Textures/nonor_nor.tga"
 								],
 								"material": "PoseAnimDifAsgNor"
 							},
