@@ -2,7 +2,7 @@
 	Copyright (c) 2019 Brent Batch
 ]]--
 
-devPrint('Loading globalScript.lua')
+print('Loading globalScript.lua')
 
 sm.__globalScripts = sm.__globalScripts or { -- the only "cross mod" global
 	classes = {}, -- globalscript classes
@@ -41,11 +41,11 @@ for scriptname, g_script in pairs(sm.jsonReader.readFile("Scripts/SE_Libs/global
 	local success, err = pcall(dofile, "$CONTENT_"..__localId.."/Scripts/SE_Libs/globalscripts/"..g_script.script)
 	if success then
 		if g_script.crossModUuid then -- crossmod
-			modPrint('crossmod',g_script)
+			print('crossmod',g_script)
 			local script = sm.__globalScripts.classes[g_script.crossModUuid..":"..scriptname]
 			if script then -- it exists in global table, some other mod already loaded some version of this script
 			
-				modPrint('crossmod exists already',g_script)
+				print('crossmod exists already',g_script)
 				-- check version and use latest one:
 				if (script.version or 1) >= (_G[g_script.class].version or 1) then
 					_G[g_script.class] = script -- other mod had up to date version, load in current global space
@@ -54,20 +54,20 @@ for scriptname, g_script in pairs(sm.jsonReader.readFile("Scripts/SE_Libs/global
 					sm.__globalScripts.classes[g_script.crossModUuid..":"..scriptname] = _G[g_script.class] -- gs global is most current, load into table.
 				end
 			else
-				modPrint('loading crossmod',g_script)
+				print('loading crossmod',g_script)
 				-- doesn't exist in global table yet
 				sm.__globalScripts.classes[g_script.crossModUuid..":"..scriptname] = _G[g_script.class]
 			end
-			devPrint("Globalscript:loading", g_script.script)
+			print("Globalscript:loading", g_script.script)
 			thisModScriptIDs[g_script.class] = g_script.crossModUuid
 		else
-			modPrint('not crossmod',g_script)
+			print('not crossmod',g_script)
 			sm.__globalScripts.classes[__localId..":"..scriptname] = _G[g_script.class]
-			devPrint("Globalscript:loading", g_script.script)
+			print("Globalscript:loading", g_script.script)
 			thisModScriptIDs[g_script.class] = __localId
 		end
 	else
-		devPrint("Globalscript:Error:",err)
+		print("Globalscript:Error:",err)
 	end
 end
 
@@ -98,11 +98,11 @@ function globalscript.client_attachScript(self, scriptName, ...)
 	local params = {...}
 	
 	if self.__hasAttached and self.__hasAttached ~= __scriptName then -- there is already a script attached to this remote, and the part is trying to attach a different script to this, spawn new instance for this other script.
-		modPrint('this remote instance already has a globalscript attached, spawning another')
+		print('this remote instance already has a globalscript attached, spawning another')
 		local oldserver_onFixedUpdate = self.server_onFixedUpdate
 		function self.server_onFixedUpdate(self, dt) --overwrite to create remote
 			if not sm.__globalScripts.scripts[__scriptName] then -- don't do script if it already exists.
-				modPrint("gs: no remote, spawning remote shape")
+				print("gs: no remote, spawning remote shape")
 				sm.shape.createPart( shapeUuid, sm.vec3.new(0,0,2000), sm.quat.identity(), false, true )
 			end
 			self.server_onFixedUpdate = oldserver_onFixedUpdate
@@ -118,7 +118,7 @@ function globalscript.client_attachScript(self, scriptName, ...)
 			local oldserver_onFixedUpdate = self.server_onFixedUpdate
 			function self.server_onFixedUpdate(self, dt) --overwrite to create remote
 				if not sm.__globalScripts.scripts[__scriptName] then -- if it still doesn't exist ... (this is next tick)
-					devPrint("gs: no remote, spawning remote shape")
+					print("gs: no remote, spawning remote shape")
 					sm.shape.createPart( shapeUuid, sm.vec3.new(0,0,2000), sm.quat.identity(), false, true )
 				end
 				self.server_onFixedUpdate = oldserver_onFixedUpdate
@@ -128,22 +128,22 @@ function globalscript.client_attachScript(self, scriptName, ...)
 		end
 	else -- is remote
 		
-		devPrint("gs:",self.shape.id,"applies for remote")
+		print("gs:",self.shape.id,"applies for remote")
 		
 		if sm.__globalScripts.scripts[__scriptName] then -- this script is already attached
 			
-			devPrint('gs:',scriptName,'script already attached to a different remote!')
-			local f = function() devPrint('gs: remote:',sm.__globalScripts.scripts[__scriptName].shape.id,', (destroying) this:', self.shape.id) end
+			print('gs:',scriptName,'script already attached to a different remote!')
+			local f = function() print('gs: remote:',sm.__globalScripts.scripts[__scriptName].shape.id,', (destroying) this:', self.shape.id) end
 			pcall(f,nil)
 			
 			local server_onFixedUpdate = self.server_onFixedUpdate
 			function self.server_onFixedUpdate(this, dt)
-				self.shape:destroyShape() devPrint("gs:",this.shape.id,"destroyed dupe")
+				self.shape:destroyShape() print("gs:",this.shape.id,"destroyed dupe")
 			end
 		else
 			-- mutate to globalscript excecutor:
-			devPrint('gs:',self.shape.id,'mutating remote')
-			modPrint('remote for', scriptName)
+			print('gs:',self.shape.id,'mutating remote')
+			print('remote for', scriptName)
 			self.__hasAttached = __scriptName
 			
 			sm.__globalScripts.scripts[__scriptName] = self -- remote is known
@@ -154,7 +154,7 @@ function globalscript.client_attachScript(self, scriptName, ...)
 			self.client_onFixedUpdate = function() end
 			self.client_onDestroy = function() end
 			
-			devPrint('gs:',scriptName,'attaching to remote - OK')
+			print('gs:',scriptName,'attaching to remote - OK')
 			for k, v in pairs(script) do self[k] = v end
 			
 			
@@ -171,7 +171,7 @@ function globalscript.client_attachScript(self, scriptName, ...)
 					self.client_onFixedUpdate = client_onFixedUpdate
 					client_onFixedUpdate(self, dt)
 				end
-				devPrint('gs:',scriptName,'global script successfully created - OK')
+				print('gs:',scriptName,'global script successfully created - OK')
 			else
 				-- call 'refresh' functions on the scripts
 				if script.server_onRefresh then
@@ -190,13 +190,13 @@ function globalscript.client_attachScript(self, scriptName, ...)
 						client_onFixedUpdate(self, dt)
 					end
 				end
-				devPrint('gs:',scriptName,'has been successfully reloaded and attached - OK')
+				print('gs:',scriptName,'has been successfully reloaded and attached - OK')
 			end
 			
 			local client_onDestroy = self.client_onDestroy
 			self.client_onDestroy = function(self) -- modifying script to destroy reference to remote when remote destroyed.
 				if sm.__globalScripts.scripts[__scriptName] == self then 
-					devPrint('!!!gs: removed remote - global',scriptName,'script excecution halted !!!')
+					print('!!!gs: removed remote - global',scriptName,'script excecution halted !!!')
 				end
 				sm.__globalScripts.scripts[__scriptName] = nil
 				client_onDestroy(self)
@@ -211,12 +211,12 @@ function globalscript.client_attachScript(self, scriptName, ...)
 			
 			self.client_onRefresh = function(self)
 				sm.isDev = true
-				devPrint('gs: [partclass refresh] scriptclass using',scriptName,'has been reloaded')
-				devPrint('gs: [partclass refresh] detach remote & rig remote self destruct')
+				print('gs: [partclass refresh] scriptclass using',scriptName,'has been reloaded')
+				print('gs: [partclass refresh] detach remote & rig remote self destruct')
 				sm.__globalScripts.scripts[__scriptName] = nil -- detach remote so a new one can spawn
 				self.server_onFixedUpdate = function(self)
 					self.shape:destroyShape()
-					devPrint('gs: [partclass refresh] successful destroy and reboot of script',scriptName)
+					print('gs: [partclass refresh] successful destroy and reboot of script',scriptName)
 					sm.shape.createPart( shapeUuid, sm.vec3.new(0,0,2000), sm.quat.identity(), false, true )
 				end
 				sm.__globalScripts.classes[__scriptName].__isReloadedScript = true
@@ -224,12 +224,12 @@ function globalscript.client_attachScript(self, scriptName, ...)
 			
 			script.client_reload = function() -- script can call this to refresh itself.
 				sm.isDev = true
-				devPrint('gs: [rc refresh]',scriptName,'script was refreshed')
+				print('gs: [rc refresh]',scriptName,'script was refreshed')
 				local uuid = thisModScriptIDs[scriptName]
 				for scriptname, g_script in pairs(sm.jsonReader.readFile("Scripts/SE_Libs/globalscripts/globalscripts.json") or {}) do
 					if uuid..":"..scriptname == __scriptName then -- find scriptclass that has been reloaded.
 						
-						devPrint('gs: [rc refresh] detach remote & rig remote self destruct')
+						print('gs: [rc refresh] detach remote & rig remote self destruct')
 						sm.__globalScripts.scripts[__scriptName] = nil -- detach remote so a new one can spawn
 						
 						-- rig remote to destruct
@@ -244,7 +244,7 @@ function globalscript.client_attachScript(self, scriptName, ...)
 						--	end
 						--end
 						
-						devPrint('gs: [rc refresh] getting reloaded script:',g_script.script)
+						print('gs: [rc refresh] getting reloaded script:',g_script.script)
 						sm.__globalScripts.classes[__scriptName] = _G[g_script.class] -- load new script
 						sm.__globalScripts.classes[__scriptName].__isReloadedScript = true
 						

@@ -1,10 +1,5 @@
 dofile "SE_Loader.lua"
 
--- the following code prevents re-load of this file, except if in '-dev' mode.
-if smokeDetector and not sm.isDev then -- increases performance for non '-dev' users.
-	return -- perform sm.checkDev(shape) in server_onCreate to set sm.isDev
-end
-
 
 smokeDetector = class(globalscript) 
 smokeDetector.maxChildCount = -1

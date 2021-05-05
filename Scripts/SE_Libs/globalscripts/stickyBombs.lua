@@ -44,7 +44,7 @@ end
 
 function stickyBomb.server_onFixedUpdate(self, dt)
 	--print('stickyBomb.server_onFixedUpdate', self.server_queued)
-	for key, queued in pairs(self.server_queued) do --devPrint('server_queued')
+	for key, queued in pairs(self.server_queued) do --print('server_queued')
 		local shapeId, position, velocity, detonationTime, capacity, explodeOld = queued[1], queued[2], queued[3], queued[4], queued[5], queued[6]
 		
 		if self.ammo[shapeId] then
@@ -59,7 +59,7 @@ function stickyBomb.server_onFixedUpdate(self, dt)
 			table.sort(bombIds) -- make it so oldest are first
 			local cap = math.max(0,capacity - 1) -- if capacity >0 then it's about to spawn one, gotta remove an old one then.
 			if i > cap then
-				--modPrint('over capacity of', capacity, 'has:', i, 'bombs:', bombIds)
+				--print('over capacity of', capacity, 'has:', i, 'bombs:', bombIds)
 				local illegalbombs = {}
 				local removebombs = i - cap
 				for k, id in pairs(bombIds) do
@@ -71,14 +71,14 @@ function stickyBomb.server_onFixedUpdate(self, dt)
 						sm.physics.explode( bomb.position + bomb.velocity * dt,  6, 0.13, 0.5, 1, "PropaneTank - ExplosionSmall")
 					end
 				end
-				--modPrint('removing:', illegalbombs)
+				--print('removing:', illegalbombs)
 				self.network:sendToClients("client_killBombs", {shapeId, illegalbombs})
 			end
 			
 		end
 		if capacity > 0 then
 			someFuckingNumber = someFuckingNumber + 1
-			--modPrint('creating bomb id:',someFuckingNumber)
+			--print('creating bomb id:',someFuckingNumber)
 			self.network:sendToClients("client_createBomb", {shapeId, someFuckingNumber, position, velocity, detonationTime, sm.physics.getGravity()/10})
 		end
 		self.server_queued[key] = nil
@@ -164,7 +164,7 @@ function stickyBomb.client_killBombs(self, data)
 	local bombs = self.ammo[shapeId]
 	if not bombs then return end
 	for _, k in pairs(illegalbombs) do
-		--modPrint('clearing bomb', k)
+		--print('clearing bomb', k)
 		self.ammo[shapeId][k].effect:stop()
 		self.ammo[shapeId][k] = nil
 	end

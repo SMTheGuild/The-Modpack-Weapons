@@ -4,11 +4,6 @@ if not bigWatergun then
 	dofile("bigWatergun.lua") -- required, contains water physics.
 end
 
--- the following code prevents re-load of this file, except if in '-dev' mode.  -- fixes broken sh*t by devs.
-if balloonlauncher and not sm.isDev then -- increases performance for non '-dev' users.
-	return -- perform sm.checkDev(shape) in server_onCreate to set sm.isDev
-end
-   
 
 balloonlauncher = class(globalscript) 
 balloonlauncher.maxChildCount = -1

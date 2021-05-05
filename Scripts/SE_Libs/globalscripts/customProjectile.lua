@@ -37,7 +37,7 @@ customProjectile.server_queued = {}
 customProjectile.projectiles = {}
 
 function customProjectile.server_onCreate(self)
-	devPrint('customProjectile.server_onCreate')
+	print('customProjectile.server_onCreate')
 	
 end
 
@@ -84,13 +84,13 @@ end
 function customProjectile.client_onRefresh(self)
 	-- any global variables need to be re-set here
 	-- before customProjectile.client_onRefresh gets called, the client_onDestroy will be called to destroy any malfunctioning projectiles.
-	devPrint('customProjectile.client_onRefresh')
+	print('customProjectile.client_onRefresh')
 	-- you might want to call self:client_onCreate()
 end
 
 
 function customProjectile.client_onCreate(self, ...)
-	devPrint('customProjectile.client_onCreate')
+	print('customProjectile.client_onCreate')
 end
 
 function customProjectile.client_createProjectile(self, data)

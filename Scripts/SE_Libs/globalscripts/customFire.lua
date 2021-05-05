@@ -150,7 +150,7 @@ function customFire.server_spawnFire(self, data)
 			else
 				superSmallDistance = superSmallDistance + 1
 				if superSmallDistance == 2 then 
-					return --devPrint('super small distance violation', superSmallDistance)
+					return --print('super small distance violation', superSmallDistance)
 				end
 			end
 			
@@ -172,13 +172,13 @@ function customFire.server_spawnFire(self, data)
 	
 	local efficiency = temperatureEfficiency / inverseDistanceSum
 	
-	if superSmallDistance >= 2 then --devPrint('super small distance violation', superSmallDistance)
+	if superSmallDistance >= 2 then --print('super small distance violation', superSmallDistance)
 		return -- can't allow this.
 	end 
 	
 	local sound = (soundDensity < 4) and density/3 or false -- using density for volume
 	
-	--devPrint("amountFires",amountFires, density)
+	--print("amountFires",amountFires, density)
 	if amountFires > 420 then return end -- hard limit (particles don't work after this)
 	
 	if raycast and raycast.valid then
@@ -202,12 +202,12 @@ function customFire.server_spawnFire(self, data)
 			
 			if not priority then
 				if smallBodyMass then
-					if smallestDistance < 0.12 then return end  --devPrint(smallestDistance,"< 0.4 distance violated - 'body' fire spawn halted")
+					if smallestDistance < 0.12 then return end  --print(smallestDistance,"< 0.4 distance violated - 'body' fire spawn halted")
 				else
-					if smallestDistance < 0.3 then return end  --devPrint(smallestDistance,"< 0.4 distance violated - 'body' fire spawn halted") 
+					if smallestDistance < 0.3 then return end  --print(smallestDistance,"< 0.4 distance violated - 'body' fire spawn halted") 
 				end
 				
-				if density > 30 then  --devPrint(density, "> 15 density violated - 'body' fire spawn halted")
+				if density > 30 then  --print(density, "> 15 density violated - 'body' fire spawn halted")
 					return
 				end
 				
@@ -295,10 +295,10 @@ function customFire.server_spawnFire(self, data)
 				if math.random(100) > 15 then -- catch chance
 					return 
 				end
-				if density > 15 then   --devPrint(density, "> 15 density violated - 'terrain' fire spawn halted")
+				if density > 15 then   --print(density, "> 15 density violated - 'terrain' fire spawn halted")
 					return 
 				end
-				if smallestDistance < 0.7 then   --devPrint(smallestDistance,"< 0.4 distance violated - 'terrain' fire spawn halted")
+				if smallestDistance < 0.7 then   --print(smallestDistance,"< 0.4 distance violated - 'terrain' fire spawn halted")
 					return 
 				end
 				spreadFactor = math.random(3,15)
@@ -427,7 +427,7 @@ end
 function customFire.server_fireSpread(self, key, fire, dt)
 	
 	if fire.type == "body" and not sm.exists(fire.target) then
-		--devPrint('fire ded')
+		--print('fire ded')
 		for x = 1,10 do -- try 10x
 			local normal = fire.normalWorld
 			local random = sm.vec3.random() * math.random(25)/20 -- 0.05-1.25 meters
@@ -437,7 +437,7 @@ function customFire.server_fireSpread(self, key, fire, dt)
 				fire.position - normal * 0.5 + tangent * 0.3
 			)
 			if (hit and result.type == "body") then
-				--devPrint('found place to nest new', hit, result)
+				--print('found place to nest new', hit, result)
 				customFire.server_spawnFire({}, {
 					position = fire.position, 
 					velocity = fire.velocity,
@@ -527,14 +527,14 @@ function customFire.server_fireSpread(self, key, fire, dt)
 	
 	-- ALSO: upwards draft of fire:
 	if math.random(200) == 1 then -- TODO: instead do: 'track shapes and give them a timer/temperature?'
-		--devPrint('updraft')
+		--print('updraft')
 		local position = fire.position
 		local hit, result = sm.physics.raycast( 
 			position + sm.vec3.new(0,0,0.4),
 			position + sm.noise.gunSpread(sm.vec3.new(0,0,4), 20) )
 			
 		if hit and math.random(1,math.ceil(sm.util.clamp(16*result.fraction, 1, 16))) == 1 then
-			--devPrint('updraft successfull')
+			--print('updraft successfull')
 			customFire.server_spawnFire({}, {
 				position = result.pointWorld, 
 				velocity = fire.velocity,
@@ -689,7 +689,7 @@ function customFire.client_createFire(self, data)
 	projectile.impulseRadius = impulseRadius
 	projectile.magnitude = magnitude
 	
-	--devPrint('client created fire:\n',{lifetime = lifetime, fireType = fireType, position = position, source = source})
+	--print('client created fire:\n',{lifetime = lifetime, fireType = fireType, position = position, source = source})
 	
 	table.insert(customFire.fires, projectile)
 end
@@ -770,7 +770,7 @@ function customFire.client_onRefresh(self)
 end
 
 function customFire.client_onDestroy(self)
-	devPrint('customFire onDestroy')
+	print('customFire onDestroy')
 	for k, fire in pairs(self.fires) do
 		if fire.sounds then
 			for k, eff in pairs(fire.sounds) do

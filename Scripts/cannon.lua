@@ -8,11 +8,6 @@
 dofile "SE_Loader.lua"
 
 
--- the following code prevents re-load of this file, except if in '-dev' mode.
-if cannon and not sm.isDev then -- increases performance for non '-dev' users.
-	return -- perform sm.checkDev(shape) in server_onCreate to set sm.isDev
-end
-
 cannon = class( globalscript )
 cannon.maxParentCount = 1
 cannon.maxChildCount = 0
