@@ -22,7 +22,6 @@ function campfire.server_onCreate( self )
 end
 
 function campfire.server_onRefresh( self )
-	sm.isDev = true
 	--self:server_onCreate()
 end
 

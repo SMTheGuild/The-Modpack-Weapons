@@ -31,7 +31,6 @@ function skull.server_init( self )
 end
 
 function skull.server_onRefresh( self )
-	sm.isDev = true
 	self:server_init()
 end
 

@@ -21,7 +21,6 @@ bigcannon.maxForce = 40
 bigcannon.spreadDeg = 0.5
 
 function bigcannon.server_onRefresh( self )
-	sm.isDev = true
 	self:server_onCreate()
 end
 

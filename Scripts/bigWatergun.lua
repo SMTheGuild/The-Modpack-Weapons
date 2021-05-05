@@ -25,7 +25,6 @@ function bigWatergun.client_onCreate(self)
 end
 
 function bigWatergun.server_onRefresh(self)
-	sm.isDev = true
 	self:server_onCreate()
 end
 function bigWatergun.server_onCreate(self)

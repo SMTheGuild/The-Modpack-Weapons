@@ -19,7 +19,6 @@ stickyGrenade.colorHighlight = sm.color.new( 0x11B2B2ff  )
 stickyGrenade.poseWeightCount = 1
 
 function stickyGrenade.client_onRefresh(self)
-	sm.isDev = true
 	self:client_onCreate()
 end
 function stickyGrenade.client_onCreate(self)

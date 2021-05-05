@@ -26,7 +26,6 @@ function flamethrower.server_onCreate( self )
 end
 
 function flamethrower.server_onRefresh( self )
-	sm.isDev = true
 	self:server_onCreate()
 end
 

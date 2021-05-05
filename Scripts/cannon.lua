@@ -21,7 +21,6 @@ cannon.maxForce = 40
 cannon.spreadDeg = 1
 
 function cannon.server_onRefresh( self )
-	sm.isDev = true
 	self:server_onCreate()
 end
 

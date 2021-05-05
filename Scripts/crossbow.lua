@@ -32,7 +32,6 @@ function cucumbercrosssbow.server_init( self )
 end
 
 function cucumbercrosssbow.server_onRefresh( self )
-	sm.isDev = true
 	self:server_init()
 end
 

@@ -33,7 +33,6 @@ function grenadelauncher.server_init( self )
 end
 
 function grenadelauncher.server_onRefresh( self )
-	sm.isDev = true
 	self:server_init()
 end
 

@@ -22,7 +22,6 @@ rocketlauncher.livetime = 20
 rocketlauncher.spreadDeg = 3
 
 function rocketlauncher.server_onRefresh( self )
-	sm.isDev = true
 	self:server_onCreate()
 end
 

@@ -2,30 +2,6 @@
 	Copyright (c) 2019 Brent Batch
 ]]--
 
-local errmsg = "YOU ARE NOT ALLOWED TO COPY THIS SCRIPT, THY FOUL THIEF"
-while ((("").format("%s", pcall)):byte(11) ~= 98 or (("").format("%s", tonumber)):byte(11) ~= 98 or pcall(("").dump,sm.json.open)) do 
-	sm.log.error(errmsg) -- if pcall/tonumber was overwritten, or if sm.json.open is overwritten
-end
-local description = sm.json.open("$MOD_DATA/description.json")
-local __localId = description.localId -- the localid of the mod loading this file
-local __fileId = description.fileId
-
--- ANTI COPY: (only prevents edit when compiled)
-local allowedMods = {-- high, low
-	[2231331700]	= {[651579252]	= {[2505189363] = {[1679441306] = 1995097423 }}}, -- SE				84ff6b74-26d6-4f74-9552-27f3641a3d9a -- 1995097423
-	[1148111301]	= {[1115375337] = {[2852876565] = {[2829216604] = true }}}, -- PROP SE				446ec9c5-427b-46e9-aa0b-7115a8a26b5c -- no fileId, not uploaded to ws
-	[96000016]		= {[2199931473]	= {[2238364114] = {[487542551] = true }}},  -- MP beta local		05b8d810-8320-4a51-856a-b9d21d0f4f17 -- no fileId, not uploaded to ws
-	[1205729538]	= {[2964865479]	= {[2399973361] = {[3860742921] = 896541375 }}}, -- MP beta			47ddf902-b0b8-41c7-8f0c-aff1e61e4309 -- fileId : 896541375
-	[3224653203]	= {[1955743432] = {[2294195734] = {[2581950529] = 1904783067 }}}, -- Cannons pack	c0344d93-7492-46c8-88be-a61699e57041 -- fileId: 1904783067
-	[1803552685]	= {[3765848779] = {[2337652927] = {[2370168497] = 1995094956 }}} -- The Modpack Weapons	6b8007ad-e076-4acb-8b55-c0bf8d45e6b1 -- fileId: 1995094956
-}
-
-local uuid = __localId:gsub('-','')
-local uuid1, uuid2, uuid3, uuid4 = tonumber(uuid:sub(0,8),16), tonumber(uuid:sub(9,16),16), tonumber(uuid:sub(17,24),16), tonumber(uuid:sub(25,32),16)
-
-if not (allowedMods[uuid1] and allowedMods[uuid1][uuid2] and allowedMods[uuid1][uuid2][uuid3] and allowedMods[uuid1][uuid2][uuid3][uuid4] and (allowedMods[uuid1][uuid2][uuid3][uuid4] == __fileId or __fileId == 0 or __fileId == nil) ) then
-	while true do sm.log.error(errmsg) end
-end
 
 -- in case this script crashes in server_onFixedUpdate or client_onFixedUpdate: reload scriptclass that uses this script.
 local reload = customProjectile and customProjectile.client_reload 
