@@ -83,12 +83,12 @@ function sm.vec3.random()
 	return sm.vec3.new(temp * math.cos(angle), temp * math.sin(angle), z)
 end
 
-sm.vec3.new(0,0,0).normalize = sm.vec3.normalize
+--[[sm.vec3.new(0,0,0).normalize = sm.vec3.normalize
 sm.vec3.new(0,0,0).copy = sm.vec3.copy
 sm.vec3.new(0,0,0).parallel = sm.vec3.parallel
 sm.vec3.new(0,0,0).tangent = sm.vec3.tangent
 sm.vec3.new(0,0,0).localize = sm.vec3.localize
-sm.vec3.new(0,0,0).delocalize = sm.vec3.delocalize
+sm.vec3.new(0,0,0).delocalize = sm.vec3.delocalize]]
 
 
 

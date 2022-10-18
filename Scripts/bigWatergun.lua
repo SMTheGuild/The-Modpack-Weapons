@@ -124,14 +124,14 @@ function bigWatergun.server_onProjectileCollision(projectile)
 	
 	if raycast.type == "character" then
 		local character = raycast:getCharacter()
-		local diff = (character.worldPosition - projectile.position):normalize()
+		local diff = sm.vec3.normalize((character.worldPosition - projectile.position))
 		--dir.z = dir.z/2
 		local dir = projectile.velocity * 25 + diff/(diff:length() + 0.3) * 150
 		sm.physics.applyImpulse(character, dir)
 	end
 	if raycast.type == "body" then
 		local shape = raycast:getShape()
-		sm.physics.applyImpulse(shape, projectile.velocity:normalize() * sm.util.clamp(shape.mass*15,20,200), true)
+		sm.physics.applyImpulse(shape, sm.vec3.normalize(projectile.velocity) * sm.util.clamp(shape.mass*15,20,200), true)
 	end
 	
 	customFire.server_spawnWater({}, {
