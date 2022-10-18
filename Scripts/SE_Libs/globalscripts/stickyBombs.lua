@@ -13,14 +13,12 @@ local someFuckingNumber = 0 -- 'uuid replacement' , scrap uuid implementation su
 
 function stickyBomb.server_onCreate(self, ...)
 	--print('stickyBomb.client_onCreate')
-	
 end
 
 function stickyBomb.server_onFixedUpdate(self, dt)
 	--print('stickyBomb.server_onFixedUpdate', self.server_queued)
 	for key, queued in pairs(self.server_queued) do --print('server_queued')
 		local shapeId, position, velocity, detonationTime, capacity, explodeOld = queued[1], queued[2], queued[3], queued[4], queued[5], queued[6]
-		
 		if self.ammo[shapeId] then
 			local i = 0
 			local bombIds = {} --
@@ -48,7 +46,6 @@ function stickyBomb.server_onFixedUpdate(self, dt)
 				--print('removing:', illegalbombs)
 				self.network:sendToClients("client_killBombs", {shapeId, illegalbombs})
 			end
-			
 		end
 		if capacity > 0 then
 			someFuckingNumber = someFuckingNumber + 1
@@ -57,7 +54,7 @@ function stickyBomb.server_onFixedUpdate(self, dt)
 		end
 		self.server_queued[key] = nil
 	end
-	
+
 	for shapeId, bombs in pairs(self.ammo) do
 		for id, bomb in pairs(bombs) do
 			if bomb.detonationTime < dt and not bomb.done then
@@ -83,12 +80,12 @@ function stickyBomb.server_onFixedUpdate(self, dt)
 					if type == "character" then 
 						target = result:getCharacter()
 						velocity = target.velocity
-						local direction = target.direction   direction.z = 0   direction = direction:normalize()
+						local direction = target.direction   direction.z = 0   direction = sm.vec3.normalize(direction)
 						local angle = math.atan2(direction.x, direction.y)
 						pointLocal = sm.vec3.rotateZ((result.pointWorld - target.worldPosition), angle)
 						normalLocal = sm.vec3.rotateZ(result.normalLocal, angle)
 					end
-					
+
 					self.network:sendToClients("client_setBombTarget", {shapeId, id, type, position, velocity, target, pointLocal, normalLocal, bomb.detonationTime, bomb.grav})
 				end
 			end
@@ -163,41 +160,34 @@ function stickyBomb.client_onFixedUpdate(self,dt)
 					if sm.exists(bomb.target) then -- TODO: pointLocal
 						--bomb.velocity = bomb.target.velocity
 						--bomb.position = bomb.target.worldPosition + bomb.target.velocity * dt
-						
-						local direction = bomb.target.direction   direction.z = 0   direction = direction:normalize()
-						
+
+						local direction = bomb.target.direction   direction.z = 0   direction = sm.vec3.normalize(direction)
 						local angleDirection = math.atan2(direction.x, direction.y)
-						
 						local rotatedNormal = sm.vec3.rotateZ(bomb.normalLocal, -angleDirection)
-						
 						local angleNormal = math.atan2(rotatedNormal.x, rotatedNormal.y)
-						
 						local normalRotatedToY = sm.vec3.rotateZ(rotatedNormal, angleNormal)
-						
-						local rot = sm.vec3.getRotation(-normalRotatedToY, rotatedNormal)* sm.quat.lookRotation(normalRotatedToY, sm.vec3.new( 0,0,-1 )) * sm.vec3.getRotation(sm.vec3.new( 0,1,0 ), sm.vec3.new( 1,0,0 )) 
-		
+						local rot = sm.vec3.getRotation(-normalRotatedToY, rotatedNormal)* sm.vec3.getRotation(sm.vec3.new( 0,0,-1 ), normalRotatedToY) * sm.vec3.getRotation(sm.vec3.new( 0,1,0 ), sm.vec3.new( 1,0,0 )) 
+
 						bomb.effect:setRotation( rot )
-						
 						bomb.position = sm.vec3.rotateZ(bomb.pointLocal, -angleDirection) + bomb.target.worldPosition
 						bomb.velocity = (bomb.position - (bomb.oldpos or bomb.position))/dt
 						bomb.oldpos = bomb.position
 					else
 						bomb.type, bomb.target = nil, nil -- drops bomb
 					end
-					
 				end
 				bomb.detonationTime = bomb.detonationTime - dt
 			else
 				bomb.velocity = bomb.velocity*0.975 - sm.vec3.new(0,0,bomb.grav*dt*10) 
 				bomb.position = bomb.position + bomb.velocity* dt
 			end
-			
+
 			-- animate bullet:
 			--if math.random(5) == 1 then -- bullets are 'jumpy' if position is set too regulary
 				bomb.effect:setPosition(bomb.position)
 			--end
 			--bomb.effect:setVelocity(bomb.velocity)
-			
+
 			if bomb.detonationTime < 0 then
 				bomb.effect:setPosition(sm.vec3.new(0,0,1000000))
 				bomb.effect:stop()
@@ -205,7 +195,6 @@ function stickyBomb.client_onFixedUpdate(self,dt)
 			end
 		end
 	end
-	
 end
 
 function stickyBomb.client_onRefresh(self)
@@ -230,7 +219,7 @@ end
 function stickyBomb.server_spawnBomb(shapeId, pos, velocity, detonationTime, capacity) -- can be called from server or from client, it's best to call from server tho
 	if not sm.isHost then return end
 	assert(shapeId and pos and velocity and detonationTime and capacity, "stickyBomb.server_spawnBomb: please fill in all parameters: shapeId, pos, velocity, detonationTime, capacity")
-	
+
 	table.insert(stickyBomb.server_queued, {shapeId, pos, velocity, detonationTime, capacity})
 end
 

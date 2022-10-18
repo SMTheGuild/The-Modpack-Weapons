@@ -89,7 +89,7 @@ function customProjectile.client_createProjectile(self, data)
 	effect:setPosition(position)
 	--effect:setVelocity(velocity)
 	if velocity:length2() > 0.0001 then
-		effect:setRotation(sm.vec3.getRotation( rotation, velocity:normalize() ))
+		effect:setRotation(sm.vec3.getRotation( rotation, sm.vec3.normalize(velocity) ))
 	end
 	effect:start()
 	if audio and audio ~= "" then
@@ -131,7 +131,7 @@ function customProjectile.client_onFixedUpdate(self,dt)
 			proj.lifetime = proj.lifetime - dt
 			
 			-- acceleration (can be used for rockets)
-			if proj.acceleration ~= 0 then proj.velocity = proj.velocity + proj.velocity:normalize()*proj.acceleration end
+			if proj.acceleration ~= 0 then proj.velocity = proj.velocity + sm.vec3.normalize(proj.velocity)*proj.acceleration end
 			
 			-- has been tested: velocity first, then position
 			proj.velocity = proj.velocity*(1 - proj.friction) - sm.vec3.new(0, 0, proj.gravity*dt)
@@ -149,7 +149,7 @@ function customProjectile.client_onFixedUpdate(self,dt)
 			proj.effect:setPosition(proj.position) -- causes 'flicker', we don't use this shit
 			--proj.effect:setVelocity(proj.velocity) --setVelocity doesn't work as it did in 0.3 anymore
 			if proj.velocity:length2() > 0.0001 then
-				proj.effect:setRotation(sm.vec3.getRotation( proj.rotation, proj.velocity:normalize() ))
+				proj.effect:setRotation(sm.vec3.getRotation( proj.rotation, sm.vec3.normalize(proj.velocity) ))
 			end
 			
 		end
@@ -159,8 +159,8 @@ end
 
 function customProjectile.client_projectileRaycast(self, proj, dt)
 	local right = proj.velocity:cross(sm.vec3.new(0,0,1))
-	if right:length()<0.001 then right = sm.vec3.new(1,0,0) else right = right:normalize() end
-	local up = right:cross(proj.velocity):normalize()
+	if right:length()<0.001 then right = sm.vec3.new(1,0,0) else right = sm.vec3.normalize(right) end
+	local up = sm.vec3.normalize(right:cross(proj.velocity))
 	
 	up, right = up/8 * proj.size, right/8 * proj.size
 	
