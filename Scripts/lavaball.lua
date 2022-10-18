@@ -25,6 +25,11 @@ function lavaball.client_onCreate(self)
 	self.shooteffect:start()
 end
 
+local type_lookup =
+{
+	["Shape"] = "body",
+	["Character"] = "character"
+}
 
 function lavaball.server_onCollision(self, othershape, collidePosition, velocity, othervelocity, normal)
 	
@@ -42,10 +47,12 @@ function lavaball.server_onCollision(self, othershape, collidePosition, velocity
 		result.type = "terrainSurface"
 		result.pointWorld = collidePosition
 		result.normalWorld = normal
-		if othershape then
-			result.type = "body"
+		local cur_type = type_lookup[type(othershape)]
+		if othershape and cur_type then
+			result.type = cur_type
 			result.getShape = function() return othershape end
 			result.getBody = function() return othershape.body end
+			result.getCharacter = function() return othershape end
 			result.normalLocal = normal
 		end
 
